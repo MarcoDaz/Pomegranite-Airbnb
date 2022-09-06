@@ -2,15 +2,10 @@ DROP TABLE IF EXISTS
   "public"."users",
   "public"."spaces",
   "public"."requests";
--- This script only contains the table creation statements and does not fully represent the table in the database. It's still missing: indices, triggers. Do not use it as a backup.
 
--- Sequence and defined type
-CREATE SEQUENCE IF NOT EXISTS
-  users_id_seq,
-  spaces_id_seq,
-  requests_id_seq;
+-- TABLE: users
+CREATE SEQUENCE IF NOT EXISTS users_id_seq;
 
--- Table Definition
 CREATE TABLE "public"."users" (
     "id" SERIAL,
     "email" text,
@@ -18,16 +13,61 @@ CREATE TABLE "public"."users" (
     PRIMARY KEY ("id")
 );
 
+INSERT INTO "public"."users" ("email", "password")
+VALUES ('123@gmail.com', '123456'),
+       ('def@gmail.com', '123456');
+
+-- TABLE: spaces
+CREATE SEQUENCE IF NOT EXISTS spaces_id_seq;
+
 CREATE TABLE "public"."spaces" (
     "id" SERIAL,
     "name" text,
     "description" text,
-    "price" number,
+    "price" numeric,
     "available_from" date,
     "available_to" date,
     "user_id" int,
     PRIMARY KEY ("id")
 );
+
+-- date inputs: '01/02/03' for January 2, 2003 in MDY mode
+INSERT INTO "public"."spaces" (
+  "name",
+  "description",
+  "price",
+  "available_from",
+  "available_to",
+  "user_id"
+)
+VALUES
+  (
+    '308 Negra Arroyo Lane, Albuquerque',
+    'Quaint house with pool out back',
+    100,
+    '09/23/2022',
+    '09/30/2022',
+    '2'
+  ),
+  (
+    '671 Lincoln Avenue in Winnetka',
+    'Great for a christmas visit',
+    200,
+    '12/22/2022',
+    '12/30/2022',
+    '1'
+  ),
+  (
+    '251 N. Bristol Avenue, Brentwood',
+    'Royalty once lived here',
+    300,
+    '01/20/2023',
+    '01/30/2023',
+    '2'
+  );
+
+-- TABLE: requests
+CREATE SEQUENCE IF NOT EXISTS requests_id_seq;
 
 CREATE TABLE "public"."requests" (
     "id" SERIAL,
@@ -35,28 +75,28 @@ CREATE TABLE "public"."requests" (
     "owner_user_id" int,
     "requester_user_id" int,
     "date" date,
-    "confirmed" boolean, 
+    "confirmed" boolean,
     PRIMARY KEY ("id")
 );
-
-INSERT INTO "public"."users" ("email", "password")
-VALUES ()
-
-INSERT INTO "public"."spaces" (
-  "name",
-  "description",
-  "price",
-  "available_from",
-  "available_to",
-  "user_id",
-)
-VALUES ()
 
 INSERT INTO "public"."requests" (
   "space_id",
   "owner_user_id",
   "requester_user_id",
   "date",
-  "confirmed", 
+  "confirmed"
 )
-VALUES ()
+VALUES ('1', '2', '1', '09/24/2022', 'false'),
+       ('2', '1', '2', '12/26/2022', 'false');
+
+ALTER TABLE "public"."spaces"
+  ADD FOREIGN KEY ("user_id")
+  REFERENCES "public"."users"("id");
+
+ALTER TABLE "public"."requests"
+  ADD FOREIGN KEY ("owner_user_id")
+  REFERENCES "public"."users"("id");
+  
+ALTER TABLE "public"."requests"
+  ADD FOREIGN KEY ("requester_user_id")
+  REFERENCES "public"."users"("id");

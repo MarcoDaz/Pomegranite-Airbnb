@@ -63,7 +63,7 @@ Usually, the Model class name will be the capitalised table name (single instead
 
 # Model class
 # (in lib/spaces.rb)
-class spaces
+class Spaces
 end
 
 # Repository class
@@ -92,10 +92,7 @@ end
 # The keyword attr_accessor is a special Ruby feature
 # which allows us to set and get attributes on an object,
 # here's an example:
-#
-# student = Student.new
-# student.name = 'Jo'
-# student.name
+
 ```
 
 _You may choose to test-drive this class, but unless it contains any more logic than the example above, it is probably not needed._
@@ -140,11 +137,14 @@ def all
 
   # Gets a single record by its ID
   # One argument: the id (number)
+
   def find(id)
 
     sql = 'SELECT id, name, description, price, available_from, available_to, user_id FROM spaces WHERE id = $1;'
-    result_set = DatabaseConnection.exec_params(sql, sql_params)
+    result_set = DatabaseConnection.exec_params(sql, [])
+
     space = result_set[0]
+
      space = Spaces.new
 
             space.id = record['id']
@@ -161,19 +161,18 @@ def all
   # Add more methods below for each operation you'd like to implement.
 
    def create(space)
-    sql = 'INSERT INTO spaces (name, description, price, available_from, available_to, user_id) VALUES($1, $2, $3, $4, $5, $6, $7);'
+    sql = 'INSERT INTO spaces (name, description, price, available_from, available_to, user_id) VALUES($1, $2, $3, $4, $5, $6);'
 
     sql_params = [space.name, space.description, space.price, space.available_from, space.available_to, space.user_id]
 
-    DatabaseConnection.connect(sql, sql_params)
+    DatabaseConnection.exec_params(sql, sql_params)
 
     return nil
    end
 
-   def filter_by_availability(available_from, available_to)
-
-   sql = 'SELECT id, name, description, price, available_from, available_to, user_id FROM spaces WHERE available_from = $1, available_to = $2;'
-   end
+   #def filter_by_availability(available_from, available_to)
+   #sql = 'SELECT id, name, description, price, available_from, available_to, user_id FROM spaces WHERE available_from = $1, available_to = $2;'
+   #end
 
 end
 ```
@@ -185,6 +184,7 @@ Write Ruby code that defines the expected behaviour of the Repository class, fol
 These examples will later be encoded as RSpec tests.
 
 ````ruby
+
 # EXAMPLES
 
 # 1

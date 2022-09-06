@@ -1,3 +1,8 @@
+-- When testing locally please create test database 'makersbnb_test'
+-- On terminal:
+-- > createdb 'makersbnb_test'
+-- > psql -h '127.0.0.1' < spec/seeds.sql
+
 DROP TABLE IF EXISTS
   "public"."users",
   "public"."spaces",
@@ -96,7 +101,7 @@ ALTER TABLE "public"."spaces"
 ALTER TABLE "public"."requests"
   ADD FOREIGN KEY ("owner_user_id")
   REFERENCES "public"."users"("id");
-  
+
 ALTER TABLE "public"."requests"
   ADD FOREIGN KEY ("requester_user_id")
   REFERENCES "public"."users"("id");

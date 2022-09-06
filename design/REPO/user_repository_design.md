@@ -83,7 +83,7 @@ end
 # (in lib/user_repository.rb)
 
 class UserRepository
-    def sign_in(email, password)
+    def sign_in(email, submitted_password)
             user = find_by_email(email)
 
         return nil if user.nil?
@@ -92,18 +92,22 @@ class UserRepository
 
         if user.password == encrypted_submitted_password
             # login success
+            # return true            
         else
             # wrong password
+            # return true            
         end
     end
 
     def find_by_email(email)
         sql = 'SELECT * FROM users WHERE email = $1;'
-        result_set = DatabaseConnection.exec_params(sql, [id])
+        record = DatabaseConnection.exec_params(sql, [id])[0]
+
+        return false if record == nil
 
         user = User.new
-        user.id = result_set[0]['id'].to_i
-        user.email = result_set[0]['email']
+        user.id = record['id'].to_i
+        user.email = record['email']
 
         return user
     end
@@ -123,7 +127,7 @@ class UserRepository
 
     def all
         users = []
-        sql = 'SELECT id, name, genre FROM users;'
+        sql = 'SELECT id, email, password FROM users;'
         result_set = DatabaseConnection.exec_params(sql, [])
     
     result_set.each do |record|
@@ -171,11 +175,12 @@ repo = UserRepository.new
 user = repo.find_by_email('123@gmail.com')
 user.id # => 1
 user.email # => '123@gmail.com'
-user.password # => '123456'
+encrypted_submitted_password = BCrypt::Password.create('123456')
+user.password # => encrypted_submitted_password
 
 #4 find non-existent email
 repo = UserRepository.new
-repo.find_by_email('12334@gmail.com') # => fail "user not found"
+repo.find_by_email('12334@gmail.com') # => false
 
 #5 create user
 repo = UserRepository.new
@@ -183,7 +188,7 @@ new_user = User.new
 new_user.email# => 'douglas@gmail.com'
 new_user.password# => 'makers12'
 repo.create(new_user)
-repo.all.last# => 'douglas@gmail.com'
+repo.all.last.email # => 'douglas@gmail.com'
 
 
 ```
@@ -197,7 +202,7 @@ repo.all.last# => 'douglas@gmail.com'
 
 def reset_users_table
   seed_sql = File.read('spec/seeds.sql')
-  connection = PG.connect({ host: '127.0.0.1', dbname: 'makersbnb' })
+  connection = PG.connect({ host: '127.0.0.1', dbname: 'makersbnb_test' })
   connection.exec(seed_sql)
 end
 

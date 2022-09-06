@@ -1,3 +1,5 @@
+require 'BCrypt'
+
 class UserRepository
     def sign_in(email, submitted_password)
             user = find_by_email(email)
@@ -17,7 +19,8 @@ class UserRepository
 
     def find_by_email(email)
         sql = 'SELECT * FROM users WHERE email = $1;'
-        record = DatabaseConnection.exec_params(sql, [id])[0]
+        sql_params = [email]
+        record = DatabaseConnection.exec_params(sql, sql_params)[0]
 
         return false if record == nil
 

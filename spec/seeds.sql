@@ -1,7 +1,7 @@
 -- When testing locally please create test database 'makersbnb_test'
 -- On terminal:
 -- > createdb 'makersbnb_test'
--- > psql -h '127.0.0.1' < spec/seeds.sql
+-- > psql -h '127.0.0.1' makersbnb_test < spec/seeds.sql
 
 DROP TABLE IF EXISTS
   "public"."users",

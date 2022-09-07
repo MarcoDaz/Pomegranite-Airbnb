@@ -26,5 +26,8 @@ class Application < Sinatra::Base
     
     return erb(:sign_up_success)
   end
-
+  
+  get '/create_space' do
+    return erb(:create_space)
+  end
 end

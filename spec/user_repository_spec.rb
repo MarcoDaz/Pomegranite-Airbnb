@@ -11,14 +11,40 @@ describe UserRepository do
       reset_users_table
   end
 
-  it 'sign a user in' do
-  repo = UserRepository.new
+  it "sign a user in" do
+    repo = UserRepository.new
+    result = repo.sign_in('123@gmail.com','$2a$12$QYL4W2L6oFSooO0oz2Q4Uu6fKT1scKqMw8vIbzXI85ndi1M1zSOp.')
+    expect(result).to eq true
+  end
 
-  result = repo.sign_in('123@gmail.com', '123456')
-  result2 = repo.sign_in('123@gmail.com', '1234las')
+  it "fails password missing" do
+    repo = UserRepository.new
+    result = repo.sign_in('123@gmail.com','')
+    expect(result).to eq false
+  end
+
+  it "find existing user" do
+    repo = UserRepository.new
+    user = repo.find_by_email('123@gmail.com')
+    expect(user['id']).to eq "1"
+    expect(user['email']).to eq '123@gmail.com'
+    expect(user['password']).to eq '$2a$12$QYL4W2L6oFSooO0oz2Q4Uu6fKT1scKqMw8vIbzXI85ndi1M1zSOp.'
+  end
   
-  expect(result).to eq true
-  expect(result).to eq false
-end
-  
+  it "find non-existent email" do
+    repo = UserRepository.new
+    expect { repo.find_by_email('123456@gmail.com') }.to raise_error 
+  end
+
+  it "creates user" do
+    repo = UserRepository.new
+    new_user = User.new
+    new_user.email = 'douglas@gmail.com'
+    new_user.password = 'makers12'
+    repo.create(new_user)
+
+    users = repo.all
+    expect(users.length).to eq(3)
+    expect(users.last.email).to eq('douglas@gmail.com')
+  end
 end

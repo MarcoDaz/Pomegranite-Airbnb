@@ -2,33 +2,26 @@ require 'user'
 require 'bcrypt'
 
 class UserRepository
-    def sign_in(email, submitted_password)
-            user = find_by_email(email)
 
-        return nil if user.nil?
 
-        encrypted_submitted_password = BCrypt::Password.create(submitted_password)
 
-        if user.password == encrypted_submitted_password
-            return true         
+      def sign_in(email, password)
+        user = find_by_email(email)
+        if user["password"] == password
+            return true
         else
-          return false          
+            return false
         end
-    end
+        # binding.irb
+      end
 
     def find_by_email(email)
         sql = 'SELECT * FROM users WHERE email = $1;'
-        record = DatabaseConnection.exec_params(sql, [email])[0]
-
-        return false if record == nil
-
-        user = User.new
-        user.id = record['id'].to_i
-        user.email = record['email']
-        user.password = record['password']
-
-        return user
-    end
+        sql_params = [email]
+        result = DatabaseConnection.exec_params(sql, sql_params)
+        result[0]
+        # binding.irb
+      end
 
     def create(new_user)
         encrypted_password = BCrypt::Password.create(new_user.password)
@@ -41,25 +34,23 @@ class UserRepository
             new_user.email,
             encrypted_password
         ]
+        DatabaseConnection.exec_params(sql, sql_params)
     end
 
     def all
         users = []
         sql = 'SELECT id, email, password FROM users;'
         result_set = DatabaseConnection.exec_params(sql, [])
-    
-    result_set.each do |record|
 
-      user = User.new
-      user.id = record['id'].to_i
-      user.email = record['email']
 
-      users << user
+        result_set.each do |record|
+
+        user = User.new
+        user.id = record['id'].to_i
+        user.email = record['email']
+
+        users << user
+        end
+        return users
     end
-
-    return users
-  end
-
-    
-
 end

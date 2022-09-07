@@ -25,7 +25,7 @@ class RequestRepository
         request.owner_user_id = record['owner_user_id'].to_i
         request.requester_user_id = record['requester_user_id'].to_i
         request.date = record['date']
-        request.confirmed = record['confirmed']
+        request.confirmed = to_boo(record['confirmed'])
 
         requests << request
       end
@@ -55,12 +55,12 @@ class RequestRepository
       record = result_set[0]
 
       request = Request.new
+      request.id = record['id'].to_i
       request.space_id = record['space_id'].to_i
       request.owner_user_id = record['owner_user_id'].to_i
       request.requester_user_id = record['requester_user_id'].to_i
       request.date = record['date']
-      request.confirmed = record['confirmed']
-      request.id = record['id'].to_i
+      request.confirmed = to_boo(record['confirmed'])
 
       return request
     end
@@ -139,7 +139,7 @@ class RequestRepository
         request.owner_user_id = record['owner_user_id'].to_i
         request.requester_user_id = record['requester_user_id'].to_i
         request.date = record['date']
-        request.confirmed = record['confirmed']
+        request.confirmed = to_boo(record['confirmed'])
 
         requests << request
       end
@@ -173,12 +173,17 @@ class RequestRepository
         request.owner_user_id = record['owner_user_id'].to_i
         request.requester_user_id = record['requester_user_id'].to_i
         request.date = record['date']
-        request.confirmed = record['confirmed']
+        request.confirmed = to_boo(record['confirmed'])
 
         requests << request
       end
 
     return requests
+    end
+
+    private
+    def to_boo(str)
+      return str == 't' ? true : false
     end
 
   end

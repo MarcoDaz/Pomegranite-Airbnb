@@ -25,14 +25,14 @@ RSpec.describe RequestRepository do
         expect(requests[0].owner_user_id).to eq(2)
         expect(requests[0].requester_user_id).to eq(1)
         expect(requests[0].date).to eq('2022-09-24')
-        expect(requests[0].confirmed).to eq('false')
+        expect(requests[0].confirmed).to eq(false)
         
         expect(requests[1].id).to eq(2)
         expect(requests[1].space_id).to eq(2)
         expect(requests[1].owner_user_id).to eq(1)
         expect(requests[1].requester_user_id).to eq(2)
         expect(requests[1].date).to eq('2022-12-26')
-        expect(requests[1].confirmed).to eq('false')
+        expect(requests[1].confirmed).to eq(false)
     end
 
     # 2
@@ -45,7 +45,7 @@ RSpec.describe RequestRepository do
         expect(request.owner_user_id).to eq(2)
         expect(request.requester_user_id).to eq(1)
         expect(request.date).to eq('2022-09-24')
-        expect(request.confirmed).to eq('false')
+        expect(request.confirmed).to eq(false)
     end
 
     # 3
@@ -58,7 +58,7 @@ RSpec.describe RequestRepository do
         new_request.owner_user_id = 2
         new_request.requester_user_id = 1
         new_request.date = '2022-09-25'
-        new_request.confirmed = 'false'
+        new_request.confirmed = false
 
         repo.create(new_request)
 
@@ -76,7 +76,7 @@ RSpec.describe RequestRepository do
 
         updated_request1 = repo.find(1)
 
-        expect(updated_request1.confirmed).to eq 'true'
+        expect(updated_request1.confirmed).to eq true
     end
 
     # 5
@@ -101,7 +101,7 @@ RSpec.describe RequestRepository do
         expect(requests_of_owner2[0].owner_user_id).to eq 2
         expect(requests_of_owner2[0].requester_user_id).to eq 1
         expect(requests_of_owner2[0].date).to eq '2022-09-24'
-        expect(requests_of_owner2[0].confirmed).to eq 'false'
+        expect(requests_of_owner2[0].confirmed).to eq false
     end
 
     # 7
@@ -110,10 +110,10 @@ RSpec.describe RequestRepository do
         repo = RequestRepository.new
         requests_of_requester1 = repo.filter_by_requester_user_id(1)
         expect(requests_of_requester1[0].id).to eq 1
-        expect(requests_of_requester1[0].space_id).to eq 2
-        expect(requests_of_requester1[0].owner_user_id).to eq 1
-        expect(requests_of_requester1[0].requester_user_id).to eq 2
-        expect(requests_of_requester1[0].date).to eq '2022-12-26'
-        expect(requests_of_requester1[0].confirmed).to eq 'false'
+        expect(requests_of_requester1[0].space_id).to eq 1
+        expect(requests_of_requester1[0].owner_user_id).to eq 2
+        expect(requests_of_requester1[0].requester_user_id).to eq 1
+        expect(requests_of_requester1[0].date).to eq '2022-09-24'
+        expect(requests_of_requester1[0].confirmed).to eq false
     end
 end

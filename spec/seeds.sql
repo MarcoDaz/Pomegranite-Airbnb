@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS
   "public"."requests";
 
 -- TABLE: users
--- CREATE SEQUENCE IF NOT EXISTS users_id_seq;
+CREATE SEQUENCE IF NOT EXISTS users_id_seq;
 
 CREATE TABLE "public"."users" (
     "id" SERIAL,
@@ -23,7 +23,7 @@ VALUES ('123@gmail.com', '123456'),
        ('def@gmail.com', '123456');
 
 -- TABLE: spaces
--- CREATE SEQUENCE IF NOT EXISTS spaces_id_seq;
+CREATE SEQUENCE IF NOT EXISTS spaces_id_seq;
 
 CREATE TABLE "public"."spaces" (
     "id" SERIAL,
@@ -72,7 +72,7 @@ VALUES
   );
 
 -- TABLE: requests
--- CREATE SEQUENCE IF NOT EXISTS requests_id_seq;
+CREATE SEQUENCE IF NOT EXISTS requests_id_seq;
 
 CREATE TABLE "public"."requests" (
     "id" SERIAL,
@@ -80,7 +80,7 @@ CREATE TABLE "public"."requests" (
     "owner_user_id" int,
     "requester_user_id" int,
     "date" date,
-    "confirmed" text,
+    "confirmed" boolean,
     PRIMARY KEY ("id")
 );
 

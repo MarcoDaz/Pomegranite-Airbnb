@@ -1,11 +1,30 @@
 {
   "RSpec": {
     "coverage": {
+<<<<<<< HEAD
+      "/Users/douglasm/Pomegranite-Airbnb/spec/integration/app_spec.rb": {
+=======
       "/Users/marcodaz/MakersCode/makersbnb/spec/integration/app_spec.rb": {
+>>>>>>> main
         "lines": [
 
         ]
       },
+<<<<<<< HEAD
+      "/Users/douglasm/Pomegranite-Airbnb/spec/user_repository_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          5,
+          5,
+          5,
+          null,
+          null,
+          1,
+          1,
+          5,
+=======
       "/Users/marcodaz/MakersCode/makersbnb/spec/space_repo_spec.rb": {
         "lines": [
           1,
@@ -21,47 +40,31 @@
           null,
           1,
           3,
+>>>>>>> main
           null,
           null,
           1,
           1,
           1,
+<<<<<<< HEAD
+          1,
+          null,
+=======
           null,
           1,
           null,
           1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
+>>>>>>> main
           null,
           1,
           1,
           1,
           1,
-          1,
-          1,
-          1,
+<<<<<<< HEAD
           null,
+=======
           1,
           1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          null,
           1,
           null,
           1,
@@ -71,18 +74,7 @@
           1,
           1,
           1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
+>>>>>>> main
           null,
           1,
           1,
@@ -90,6 +82,14 @@
           1,
           1,
           1,
+<<<<<<< HEAD
+          null,
+          null,
+          1,
+          1,
+          2,
+          null,
+=======
           1,
           null,
           null,
@@ -107,18 +107,59 @@
           1,
           1,
           1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+>>>>>>> main
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+<<<<<<< HEAD
+=======
           null,
           1,
           null,
           1,
           null,
           1,
-          null,
           1,
           1,
           1,
           1,
-          1,
+>>>>>>> main
           1,
           1,
           null,
@@ -126,6 +167,53 @@
           null
         ]
       },
+<<<<<<< HEAD
+      "/Users/douglasm/Pomegranite-Airbnb/lib/user_repository.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          2,
+          2,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          4,
+          4,
+          4,
+          4,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+=======
       "/Users/marcodaz/MakersCode/makersbnb/lib/space_repository.rb": {
         "lines": [
           1,
@@ -151,16 +239,24 @@
           null,
           null,
           2,
+>>>>>>> main
           null,
           null,
           1,
           null,
           3,
+<<<<<<< HEAD
+          3,
+=======
           null,
+>>>>>>> main
           3,
           null,
           3,
           null,
+<<<<<<< HEAD
+          1,
+=======
           3,
           null,
           3,
@@ -186,10 +282,17 @@
           null,
           null,
           null,
+>>>>>>> main
           null,
           null
         ]
       },
+<<<<<<< HEAD
+      "/Users/douglasm/Pomegranite-Airbnb/lib/user.rb": {
+        "lines": [
+          1,
+          1,
+=======
       "/Users/marcodaz/MakersCode/makersbnb/lib/space.rb": {
         "lines": [
           1,
@@ -200,10 +303,15 @@
           null,
           null,
           null,
+>>>>>>> main
           null
         ]
       }
     },
+<<<<<<< HEAD
+    "timestamp": 1662549304
+=======
     "timestamp": 1662547995
+>>>>>>> main
   }
 }

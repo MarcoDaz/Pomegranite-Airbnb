@@ -91,8 +91,8 @@ INSERT INTO "public"."requests" (
   "date",
   "confirmed"
 )
-VALUES ('1', '2', '1', '2022-09-24', 'false'),
-       ('2', '1', '2', '2022-12-26', 'false');
+VALUES ('1', '2', '1', '2022-09-24', false),
+       ('2', '1', '2', '2022-12-26', false);
 
 ALTER TABLE "public"."spaces"
   ADD FOREIGN KEY ("user_id")

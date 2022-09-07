@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require_relative 'lib/user_repository'
 require_relative 'lib/database_connection'
+
 DatabaseConnection.connect('makersbnb_test')
 
 class Application < Sinatra::Base
@@ -26,5 +27,8 @@ class Application < Sinatra::Base
     
     return erb(:sign_up_success)
   end
-
+  
+  get '/create_space' do
+    return erb(:create_space)
+  end
 end

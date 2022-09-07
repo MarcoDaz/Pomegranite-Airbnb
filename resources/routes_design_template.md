@@ -1,4 +1,4 @@
-{{ METHOD }} {{ PATH}} Route Design Recipe
+Route Design Recipe
 Copy this design recipe template to test-drive a Sinatra route.
 
 1. Design the Route Signature
@@ -7,8 +7,10 @@ Copy this design recipe template to test-drive a Sinatra route.
 the HTTP method
 the path
 any query parameters (passed in the URL)
-or body parameters (passed in the request body) 2. Design the Response
-The route might return different responses, depending on the result.
+or body parameters (passed in the request body)
+
+2. Design the Response
+   The route might return different responses, depending on the result.
 
 For example, a route for a specific blog post (by its ID) might return 200 OK if the post exists, but 404 Not Found if the post is not found in the database.
 

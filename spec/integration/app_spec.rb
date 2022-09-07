@@ -1,14 +1,20 @@
+# file: spec/integration/application_spec.rb
+
 require "spec_helper"
 require "rack/test"
 require_relative '../../app'
 
-def reset_database
-  albums_seed_sql = File.read('spec/seeds.sql')
-  connection = PG.connect({ host: '127.0.0.1', dbname: 'makersbnb_test' })
-  connection.exec(albums_seed_sql)
-end
+describe Application do 
+  def reset_users_table 
+    seed_sql = File.read('spec/seeds.sql')
+    connection = PG.connect({ host: '127.0.0.1', dbname: 'makersbnb_test' })
+    connection.exec(seed_sql)
+  end
 
-RSpec.describe Application do
+  before(:each) do
+    reset_users_table
+  end
+
   # This is so we can use rack-test helper methods.
   include Rack::Test::Methods
 
@@ -16,16 +22,30 @@ RSpec.describe Application do
   # class so our tests work.
   let(:app) { Application.new }
 
-  # Reset database before each test
-  before(:each) do
-    reset_database
-  end
+  context "GET to /" do
+    it "returns 200 OK with the right content" do
+      response = get("/")
 
-  # Reset database after all tests are done
-  after(:all) do
-    reset_database
+      # Assert the response status code and body.
+      expect(response.status).to eq(200)
+      expect(response.body).to include('<h1>Welcome to MakersBnb</h1>')
+      expect(response.body).to include('We Operate an online marketplace for lodging, primarily homestays for vacation rentals, and tourist activities, all around the world!')
+    end
   end
+  
+  context "POST /sign_up" do
+    it 'Creates a new user and returns the sign up success page' do 
+      repo = UserRepository.new
 
+      response = post('/sign_up', email: 'exampleemail123@gmail.com', password: 'examplepassword123')
+
+      expect(response.status).to eq(200)
+      expect(repo.all.last.email).to eq('exampleemail123@gmail.com')
+      #expect(repo.all.last.password).to eq('examplepassword123')
+      expect(response.body).to include('<h1>Your account was successfully created!</h1>')
+    end 
+  end
+  
   context 'GET /create_space' do
     it 'returns an html form for listing a new space' do
       response = get('/create_space')
@@ -42,4 +62,4 @@ RSpec.describe Application do
       expect(body).to include '<input type="date" available_to="available_to" id="available_to" required>'
     end
   end
-end
+end 

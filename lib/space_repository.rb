@@ -16,7 +16,7 @@ class SpaceRepository
               space.price = record['price'].to_i
               space.available_from = record['available_from']
               space.available_to = record['available_to']
-              space.user_id = record['user_id']
+              space.user_id = record['user_id'].to_i
   
               spaces << space
           end
@@ -26,19 +26,21 @@ class SpaceRepository
     def find(id)
   
       sql = 'SELECT id, name, description, price, available_from, available_to, user_id FROM spaces WHERE id = $1;'
-      result_set = DatabaseConnection.exec_params(sql, [])
+
+      sql_params = [id]
+
+      result_set = DatabaseConnection.exec_params(sql, sql_params)
   
-      space = result_set[0]
+      record = result_set[0]
   
        space = Spaces.new
-  
-            space.id = record['id']
+            space.id = record['id'].to_i
             space.name = record['name']
             space.description = record['description']
-            space.price = record['price']
+            space.price = record['price'].to_i
             space.available_from = record['available_from']
             space.available_to = record['available_to']
-            space.user_id = record['user_id']
+            space.user_id = record['user_id'].to_i
         return space
     end
   

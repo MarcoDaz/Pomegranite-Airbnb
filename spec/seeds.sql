@@ -50,24 +50,24 @@ VALUES
     '308 Negra Arroyo Lane, Albuquerque',
     'Quaint house with pool out back',
     100,
-    '09/23/2022',
-    '09/30/2022',
+    '2022-09-23',
+    '2022-09-30',
     '2'
   ),
   (
     '671 Lincoln Avenue in Winnetka',
     'Great for a christmas visit',
     200,
-    '12/22/2022',
-    '12/30/2022',
+    '2022-12-22',
+    '2022-12-30',
     '1'
   ),
   (
     '251 N. Bristol Avenue, Brentwood',
     'Royalty once lived here',
     300,
-    '01/20/2023',
-    '01/30/2023',
+    '2023-01-20',
+    '2023-01-30',
     '2'
   );
 
@@ -91,8 +91,8 @@ INSERT INTO "public"."requests" (
   "date",
   "confirmed"
 )
-VALUES ('1', '2', '1', '09/24/2022', 'false'),
-       ('2', '1', '2', '12/26/2022', 'false');
+VALUES ('1', '2', '1', '2022-09-24', 'false'),
+       ('2', '1', '2', '2022-12-26', 'false');
 
 ALTER TABLE "public"."spaces"
   ADD FOREIGN KEY ("user_id")

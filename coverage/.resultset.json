@@ -1,12 +1,12 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/marcodaz/MakersCode/makersbnb/spec/integration/app_spec.rb": {
+      "/Users/douglasm/Pomegranite-Airbnb/spec/integration/app_spec.rb": {
         "lines": [
 
         ]
       },
-      "/Users/marcodaz/MakersCode/makersbnb/spec/user_repository_spec.rb": {
+      "/Users/douglasm/Pomegranite-Airbnb/spec/user_repository_spec.rb": {
         "lines": [
           1,
           null,
@@ -26,6 +26,7 @@
           null,
           1,
           1,
+          null,
           1,
           0,
           null,
@@ -33,10 +34,11 @@
           null
         ]
       },
-      "/Users/marcodaz/MakersCode/makersbnb/lib/user_repository.rb": {
+      "/Users/douglasm/Pomegranite-Airbnb/lib/user_repository.rb": {
         "lines": [
           1,
           1,
+          null,
           1,
           1,
           2,
@@ -101,7 +103,7 @@
           null
         ]
       },
-      "/Users/marcodaz/MakersCode/makersbnb/lib/user.rb": {
+      "/Users/douglasm/Pomegranite-Airbnb/lib/user.rb": {
         "lines": [
           1,
           1,
@@ -109,6 +111,6 @@
         ]
       }
     },
-    "timestamp": 1662544257
+    "timestamp": 1662544894
   }
 }

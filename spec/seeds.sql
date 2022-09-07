@@ -17,10 +17,10 @@ CREATE TABLE "public"."users" (
     "password" text,
     PRIMARY KEY ("id")
 );
--- password = 123456
+
 INSERT INTO "public"."users" ("email", "password")
-VALUES ('123@gmail.com', '$2a$12$QYL4W2L6oFSooO0oz2Q4Uu6fKT1scKqMw8vIbzXI85ndi1M1zSOp.'),
-       ('def@gmail.com', '$2a$12$QYL4W2L6oFSooO0oz2Q4Uu6fKT1scKqMw8vIbzXI85ndi1M1zSOp.');
+VALUES ('123@gmail.com', '123456'),
+       ('def@gmail.com', '123456');
 
 -- TABLE: spaces
 -- CREATE SEQUENCE IF NOT EXISTS spaces_id_seq;

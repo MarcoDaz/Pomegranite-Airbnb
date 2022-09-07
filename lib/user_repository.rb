@@ -2,12 +2,9 @@ require 'user'
 require 'bcrypt'
 
 class UserRepository
-
-
-
       def sign_in(email, password)
         user = find_by_email(email)
-        if user["password"] == password
+        if user.password == password
             return true
         else
             return false
@@ -18,10 +15,18 @@ class UserRepository
     def find_by_email(email)
         sql = 'SELECT * FROM users WHERE email = $1;'
         sql_params = [email]
-        result = DatabaseConnection.exec_params(sql, sql_params)
-        result[0]
-        # binding.irb
-      end
+        result = DatabaseConnection.exec_params(sql, sql_params).to_a
+        
+        return false if result.length == 0
+
+        result = result[0]
+        user = User.new
+        user.id = result['id']
+        user.email = result['email']
+        user.password = result['password']
+
+        return user
+    end
 
     def create(new_user)
         encrypted_password = BCrypt::Password.create(new_user.password)

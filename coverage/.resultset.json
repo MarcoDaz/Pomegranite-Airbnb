@@ -1,12 +1,12 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/connorpant/Projects/makersbnb/spec/integration/app_spec.rb": {
+      "/Users/marcodaz/MakersCode/makersbnb/spec/integration/app_spec.rb": {
         "lines": [
 
         ]
       },
-      "/Users/connorpant/Projects/makersbnb/spec/space_repo_spec.rb": {
+      "/Users/marcodaz/MakersCode/makersbnb/spec/space_repo_spec.rb": {
         "lines": [
           1,
           1,
@@ -126,12 +126,11 @@
           null
         ]
       },
-      "/Users/connorpant/Projects/makersbnb/lib/space_repository.rb": {
+      "/Users/marcodaz/MakersCode/makersbnb/lib/space_repository.rb": {
         "lines": [
           1,
           null,
           1,
-          null,
           1,
           2,
           2,
@@ -149,6 +148,7 @@
           7,
           null,
           7,
+          null,
           null,
           2,
           null,
@@ -190,16 +190,20 @@
           null
         ]
       },
-      "/Users/connorpant/Projects/makersbnb/lib/space.rb": {
+      "/Users/marcodaz/MakersCode/makersbnb/lib/space.rb": {
         "lines": [
           1,
-          null,
-          null,
           1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null
         ]
       }
     },
-    "timestamp": 1662545092
+    "timestamp": 1662547995
   }
 }

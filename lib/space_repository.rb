@@ -2,13 +2,15 @@ require 'space'
 
 class SpaceRepository
 
+
   def all
           sql = 'SELECT id, name, description, price, available_from, available_to, user_id FROM spaces;'
           result_set = DatabaseConnection.exec_params(sql, [])
-  
+          
           spaces = []
   
           result_set.each do |record|
+            
               space = Spaces.new
               space.id = record['id'].to_i
               space.name = record['name']
@@ -17,7 +19,8 @@ class SpaceRepository
               space.available_from = record['available_from']
               space.available_to = record['available_to']
               space.user_id = record['user_id'].to_i
-  
+
+
               spaces << space
           end
       return spaces

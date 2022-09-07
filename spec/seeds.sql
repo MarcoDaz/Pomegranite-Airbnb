@@ -80,7 +80,7 @@ CREATE TABLE "public"."requests" (
     "owner_user_id" int,
     "requester_user_id" int,
     "date" date,
-    "confirmed" boolean,
+    "confirmed" text,
     PRIMARY KEY ("id")
 );
 

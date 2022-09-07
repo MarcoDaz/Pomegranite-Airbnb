@@ -68,6 +68,11 @@ describe Application do
     end
   end
 
+  it "doesn't log in with wrong password" do
+    response = post('/sign_in', email: '123@gmail.com', password: '121212')
+    expect(response.status).to eq(302)
+  end
+
 
   context 'GET /create_space' do
     it 'returns an html form for listing a new space' do

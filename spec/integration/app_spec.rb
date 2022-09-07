@@ -49,7 +49,31 @@ describe Application do
       expect(response.body).to include('<h1>Your account was successfully created!</h1>')
     end 
   end
-  
+
+  context "GET /sign_in" do
+    it " login form" do
+      response = get('/sign_in')
+      expect(response.status).to eq(200)
+      expect(response.body).to include('method="POST"')
+      expect(response.body).to include('action="/sign_in"')
+      expect(response.body).to include('name="email"')
+    end
+  end
+
+  context "POST /login" do
+    it "logs in" do
+      response = post('/sign_in', email: '123@gmail.com', password: '123456')
+      expect(response.status).to eq(302)
+      expect(response.body).to eq('')
+    end
+  end
+
+  it "doesn't log in with wrong password" do
+    response = post('/sign_in', email: '123@gmail.com', password: '121212')
+    expect(response.status).to eq(302)
+  end
+
+
   context 'GET /create_space' do
     it 'returns an html form for listing a new space' do
       response = get('/create_space')

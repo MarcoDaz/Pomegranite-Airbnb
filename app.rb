@@ -33,4 +33,25 @@ class Application < Sinatra::Base
   get '/create_space' do
     return erb(:create_space)
   end
+
+  get '/sign_in' do
+    return erb(:sign_in)
+  end
+
+  post '/sign_in' do
+    email = params[:email]
+    password = params[:password]
+    repo = UserRepository.new
+    user = repo.find_by_email(email)
+    redirect('/sign_in') unless repo.sign_in(email, password)
+    session[:id] = user.id
+    redirect('/spaces')
+  end
+
+  # get "/sign_out" do
+  #   session.clear
+  #   redirect("/")
+  # end 
+
+  
 end

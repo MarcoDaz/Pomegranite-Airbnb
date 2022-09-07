@@ -4,7 +4,17 @@ require "spec_helper"
 require "rack/test"
 require_relative '../../app'
 
-describe Application do
+ describe Application do 
+
+  def reset_users_table 
+  seed_sql = File.read('spec/seeds.sql')
+  connection = PG.connect({ host: '127.0.0.1', dbname: 'makersbnb_test' })
+  connection.exec(seed_sql)
+end
+
+  before(:each) do
+    reset_users_table
+end
   # This is so we can use rack-test helper methods.
   include Rack::Test::Methods
 
@@ -31,7 +41,7 @@ describe Application do
 
           expect(response.status).to eq(200)
           expect(repo.all.last.email).to eq('exampleemail123@gmail.com')
-          expect(repo.all.last.password).to eq('examplepassword123')
+          #expect(repo.all.last.password).to eq('examplepassword123')
           expect(response.body).to include('<h1>Your account was successfully created!</h1>')
           end 
         end

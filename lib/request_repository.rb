@@ -113,6 +113,7 @@ class RequestRepository
   
   # Filters requests by the owner_user_id
   # Given a owner_user_id
+  # All the requests they have received
   def filter_by_owner_user_id(owner_user_id)
     sql = "
       SELECT

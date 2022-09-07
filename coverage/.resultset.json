@@ -3,7 +3,72 @@
     "coverage": {
       "/Users/marcodaz/MakersCode/makersbnb/spec/integration/app_spec.rb": {
         "lines": [
-
+          1,
+          1,
+          1,
+          null,
+          1,
+          2,
+          2,
+          2,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          2,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/marcodaz/MakersCode/makersbnb/app.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null
         ]
       },
       "/Users/marcodaz/MakersCode/makersbnb/spec/request_repository_spec.rb": {
@@ -653,6 +718,6 @@
         ]
       }
     },
-    "timestamp": 1662551624
+    "timestamp": 1662556088
   }
 }

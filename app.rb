@@ -11,4 +11,8 @@ class Application < Sinatra::Base
   get '/' do
     return erb(:index)
   end
+  post '/sign_up' do
+    
+  end
+
 end

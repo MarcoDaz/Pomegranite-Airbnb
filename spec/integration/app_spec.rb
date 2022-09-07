@@ -21,5 +21,14 @@ describe Application do
       expect(response.body).to include('<h1>Welcome to MakersBnb</h1>')
       expect(response.body).to include('We Operate an online marketplace for lodging, primarily homestays for vacation rentals, and tourist activities, all around the world!')
     end
-end
-end
+  end
+  context "POST /" do
+    it 'returns the sign up success page' do 
+    
+        response = post('/?email=exampleemail@gmail.com&password=examplepassword')
+    
+          expect(response.status).to eq(200)
+          expect(response.body).to include(<h1>Your account was successfully created!</h1>)
+          end 
+      end
+end 

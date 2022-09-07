@@ -13,7 +13,7 @@ describe UserRepository do
 
   it "sign a user in" do
     repo = UserRepository.new
-    result = repo.sign_in('123@gmail.com','$2a$12$QYL4W2L6oFSooO0oz2Q4Uu6fKT1scKqMw8vIbzXI85ndi1M1zSOp.')
+    result = repo.sign_in('123@gmail.com','123456')
     expect(result).to eq true
   end
 
@@ -26,14 +26,14 @@ describe UserRepository do
   it "find existing user" do
     repo = UserRepository.new
     user = repo.find_by_email('123@gmail.com')
-    expect(user['id']).to eq "1"
-    expect(user['email']).to eq '123@gmail.com'
-    expect(user['password']).to eq '$2a$12$QYL4W2L6oFSooO0oz2Q4Uu6fKT1scKqMw8vIbzXI85ndi1M1zSOp.'
+    expect(user.id).to eq "1"
+    expect(user.email).to eq '123@gmail.com'
+    expect(user.password).to eq '123456'
   end
   
   it "find non-existent email" do
     repo = UserRepository.new
-    expect { repo.find_by_email('123456@gmail.com') }.to raise_error 
+    expect(repo.find_by_email('123456@gmail.com')).to eq false 
   end
 
   it "creates user" do

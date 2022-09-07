@@ -1,0 +1,48 @@
+# file: spec/integration/application_spec.rb
+
+require "spec_helper"
+require "rack/test"
+require_relative '../../app'
+
+ describe Application do 
+
+  def reset_users_table 
+  seed_sql = File.read('spec/seeds.sql')
+  connection = PG.connect({ host: '127.0.0.1', dbname: 'makersbnb_test' })
+  connection.exec(seed_sql)
+end
+
+  before(:each) do
+    reset_users_table
+end
+  # This is so we can use rack-test helper methods.
+  include Rack::Test::Methods
+
+  # We need to declare the `app` value by instantiating the Application
+  # class so our tests work.
+  let(:app) { Application.new }
+
+  context "GET to /" do
+    it "returns 200 OK with the right content" do
+      response = get("/")
+
+      # Assert the response status code and body.
+      expect(response.status).to eq(200)
+      expect(response.body).to include('<h1>Welcome to MakersBnb</h1>')
+      expect(response.body).to include('We Operate an online marketplace for lodging, primarily homestays for vacation rentals, and tourist activities, all around the world!')
+    end
+  end
+  
+  context "POST /sign_up" do
+    it 'Creates a new user and returns the sign up success page' do 
+        repo = UserRepository.new
+
+        response = post('/sign_up', email: 'exampleemail123@gmail.com', password: 'examplepassword123')
+
+          expect(response.status).to eq(200)
+          expect(repo.all.last.email).to eq('exampleemail123@gmail.com')
+          #expect(repo.all.last.password).to eq('examplepassword123')
+          expect(response.body).to include('<h1>Your account was successfully created!</h1>')
+          end 
+        end
+end 

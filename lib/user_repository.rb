@@ -1,4 +1,4 @@
-require 'user'
+require_relative 'user'
 
 class UserRepository
       def sign_in(email, password)
@@ -31,8 +31,8 @@ class UserRepository
 
         sql = '
             INSERT INTO users (email, password)
-            VALUES($1, $2);
-        '
+            VALUES($1, $2);'
+
         sql_params = [
             new_user.email,
             new_user.password

@@ -1,0 +1,40 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/marcodaz/MakersCode/makersbnb/spec/integration/app_spec.rb": {
+        "lines": [
+
+        ]
+      },
+      "/Users/marcodaz/MakersCode/makersbnb/spec/user_repository_spec.rb": {
+        "lines": [
+          1,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    "timestamp": 1662540682
+  }
+}

@@ -31,4 +31,12 @@ class Application < Sinatra::Base
   get '/create_space' do
     return erb(:create_space)
   end
+
+  get '/requests' do
+  repo = RequestRepository.new
+
+  @requests = repo.all
+  requests_space = repo['space']
+  return erb(:all_requests)
+  end
 end

@@ -66,4 +66,13 @@ describe Application do
       expect(body).to include '<input type="date" available_to="available_to" id="available_to" required>'
     end
   end
+  context "GET /requests" do
+    it 'returns a list of requests I have made and received' do
+    response = get('/requests')
+
+    expect(response.status).to eq(200)
+    expect(response.body).to include("Requests I've made:")
+    expect(response.body).to include("Requests I've received:")
+    end
+  end
 end 

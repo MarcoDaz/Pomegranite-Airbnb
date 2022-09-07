@@ -105,3 +105,7 @@ ALTER TABLE "public"."requests"
 ALTER TABLE "public"."requests"
   ADD FOREIGN KEY ("requester_user_id")
   REFERENCES "public"."users"("id");
+
+ALTER TABLE "public"."requests"
+  ADD FOREIGN KEY ("space_id")
+  REFERENCES "public"."spaces"("id");

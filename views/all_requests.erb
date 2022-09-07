@@ -1,0 +1,26 @@
+<h1>Requests </h1>
+<div>
+"Requests I've made":
+<div>
+<% @request_made.each do |request| %>
+  <%= request.space %>
+  <%= request.confirmed? %>
+  <%= request.date_requested %>
+  <% end %>
+</div>
+</div>
+
+<div>
+"Requests I've received"
+<div>
+
+<% @request_received.each do |request| %>
+<%= request.space %>
+<%= request.confirmed? %>
+<%= request.date_requested %>
+<% end %>
+</div>
+</div>
+
+</body>
+</html>

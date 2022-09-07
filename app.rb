@@ -1,5 +1,9 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require 'user_repository'
+require 'database_connection'
+
+DatabaseConnection.connect('makersbnb_test')
 
 class Application < Sinatra::Base
   # This allows the app code to refresh
@@ -11,8 +15,17 @@ class Application < Sinatra::Base
   get '/' do
     return erb(:index)
   end
+
   post '/sign_up' do
+    user = User.new 
+    repo = UserRepository.new
+
+    user.email = params[:email]
+    user.password = params[:password]
+
+    repo.create(user)
     
+    return erb(:sign_up_success)
   end
 
 end

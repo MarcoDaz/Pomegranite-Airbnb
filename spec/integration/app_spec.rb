@@ -22,13 +22,17 @@ describe Application do
       expect(response.body).to include('We Operate an online marketplace for lodging, primarily homestays for vacation rentals, and tourist activities, all around the world!')
     end
   end
-  context "POST /" do
-    it 'returns the sign up success page' do 
-    
-        response = post('/?email=exampleemail@gmail.com&password=examplepassword')
-    
+  
+  context "POST /sign_up" do
+    it 'Creates a new user and returns the sign up success page' do 
+        repo = UserRepository.new
+
+        response = post('/sign_up', email: 'exampleemail123@gmail.com', password: 'examplepassword123')
+
           expect(response.status).to eq(200)
-          expect(response.body).to include(<h1>Your account was successfully created!</h1>)
+          expect(repo.all.last.email).to eq('exampleemail123@gmail.com')
+          expect(repo.all.last.password).to eq('examplepassword123')
+          expect(response.body).to include('<h1>Your account was successfully created!</h1>')
           end 
-      end
+        end
 end 

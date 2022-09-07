@@ -1,5 +1,4 @@
 require 'user'
-require 'bcrypt'
 
 class UserRepository
       def sign_in(email, password)
@@ -29,7 +28,6 @@ class UserRepository
     end
 
     def create(new_user)
-        encrypted_password = BCrypt::Password.create(new_user.password)
 
         sql = '
             INSERT INTO users (email, password)
@@ -37,7 +35,7 @@ class UserRepository
         '
         sql_params = [
             new_user.email,
-            encrypted_password
+            new_user.password
         ]
         DatabaseConnection.exec_params(sql, sql_params)
     end

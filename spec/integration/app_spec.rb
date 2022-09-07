@@ -41,8 +41,9 @@ end
 
           expect(response.status).to eq(200)
           expect(repo.all.last.email).to eq('exampleemail123@gmail.com')
-          #expect(repo.all.last.password).to eq('examplepassword123')
           expect(response.body).to include('<h1>Your account was successfully created!</h1>')
           end 
         end
+
+        context 
 end 

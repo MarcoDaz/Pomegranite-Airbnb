@@ -156,7 +156,7 @@ context "GET /requests" do
 
   context "GET /requested/:id" do
     it 'returns a detailed page of the request you received' do
-    response = get('/requested/:id')
+    response = get('/requested/1')
     
       expect(response.status).to eq(200)
       expect(response.body).to include('Confirm this request')

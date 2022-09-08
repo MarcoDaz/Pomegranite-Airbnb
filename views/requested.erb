@@ -1,21 +1,24 @@
 <html>
 <head></head>
 <body>
-<% @requested.each do |request| %>
- <h1> Spaces Requested </h1> 
- <h2><%= @spaces[request.space_id].name %> </h2>
-  <p> Date Requested: <%= request.date %> </p>
-    <% if request.confirmed == false %>
+<h1> Requests For Your Space: <%= @space.name %> </h1> 
+  <p> Date Requested: <%= @request.date %> </p>
+
+  <% if @request.confirmed == false %>
   <p> Not confirmed </p>
-    <% else %>
+     <% else %>
   <p> Booking confirmed </p>
-  <% end %>
-<% end %>
-  <div>
- <a href="/requests">Confirm this request</a><br />
- </div>
- <div> <br>
-<a href="/requests">Deny this request</a><br />
- </div>
+   <% end %>
+
+<form action="/requested/:id" method="POST">
+  <input type="submit" value="Confirm this request">
+</form>
+ 
+<form action="<%= '/requested/' + @request.id.to_s%>" method="POST">
+  <a href="<%= '/spaces/' + @space.id.to_s%>">
+  <input type="submit" value="Deny this request">
+</form>
+
+
 </body>
 </html>

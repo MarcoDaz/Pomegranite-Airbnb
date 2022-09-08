@@ -95,13 +95,21 @@ class Application < Sinatra::Base
 
     return erb(:all_requests)
   end
+
   get '/requested/:id' do
     repo = RequestRepository.new
     spacerepo = SpaceRepository.new
     userrepo = UserRepository.new
-    @spaces = spacerepo.all
-    @requested = repo.filter_by_owner_user_id(session[:id])
-    @user = userrepo.all
+
+    
+    #@requested = repo.filter_by_owner_user_id(session[:id])
+    @request = repo.find(params[:id])
+    @requester_user = userrepo.find(@request.requester_user_id)
+    @space = spacerepo.find(@request.space_id)
+    
+    #if @request.owner_user_id != session[:id] 
+      #redirect('/requests')
+    #end 
 
     return erb(:requested)
   end

@@ -142,4 +142,20 @@ describe Application do
       expect(response.body).to include '<h1>Book a space</h1>'
     end
   end
+
+  context 'GET /sign_out' do
+    it 'changes the header for spaces.erb' do
+      post('/sign_in', email: '123@gmail.com', password: '123456')
+
+      response1 = get('/spaces')
+      expect(response1.status).to eq 200
+      expect(response1.body).to include 'Sign Out'
+
+      get('sign_out')
+
+      response2 = get('spaces')
+      expect(response2.status).to eq 200
+      expect(response2.body).to include 'Login'
+    end
+  end
 end 

@@ -97,11 +97,11 @@ context "GET /requests" do
     response = get('/requests')
 
     expect(response.status).to eq(200)
-    expect(response.body).to include("Requests I've made:")
-    expect(response.body).to include("Requests I've received:")
+    expect(response.body).to include("Requests I have made:")
+    expect(response.body).to include("Requests I have received:")
     end
   end
-  
+
   context 'GET /spaces' do
     it 'returns the spaces form' do
       response = get('/spaces')

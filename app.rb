@@ -58,6 +58,20 @@ class Application < Sinatra::Base
     return erb(:spaces)
   end
 
+  get '/spaces/:id' do
+    repo = SpaceRepository.new
+    @space = repo.find(params[:id])
+    return erb(:space)
+  end
+
+  post '/spaces/:id' do
+    repo = SpaceRepository.new
+    @space = repo.find(params[:id])
+    redirect('/sign_in') unless repo.sign_in(email, password)
+    session[:id] = user.id
+    redirect('/requests')
+  end
+
   get '/create_space' do
     repo = UserRepository.new
     

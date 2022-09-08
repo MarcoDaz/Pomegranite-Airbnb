@@ -111,4 +111,14 @@ context "GET /requests" do
       expect(response.body).to include '<h1>Book a space</h1>'
     end
   end
+
+  context "GET /requested/:id" do
+    it 'returns a detailed page of the request you received' do
+    response = get('/requested/:id')
+    
+      expect(response.status).to eq(200)
+      expect(response.body).to include('Confirm this request')
+      expect(response.body).to include('Deny this request')
+    end
+  end
 end 

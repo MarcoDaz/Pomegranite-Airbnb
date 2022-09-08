@@ -69,4 +69,14 @@ class Application < Sinatra::Base
 
     return erb(:all_requests)
   end
+  get '/requested/:id' do
+    repo = RequestRepository.new
+    spacerepo = SpaceRepository.new
+    userrepo = UserRepository.new
+    @spaces = spacerepo.all
+    @requested = repo.filter_by_owner_user_id(session[:id])
+    @user = userrepo.all
+
+    return erb(:requested)
+  end
 end

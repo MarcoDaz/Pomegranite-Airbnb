@@ -20,7 +20,7 @@ class Application < Sinatra::Base
   end
 
   post '/sign_up' do
-    user = User.new 
+    user = User.new
     repo = UserRepository.new
 
     user.email = params[:email]
@@ -52,6 +52,8 @@ class Application < Sinatra::Base
   end 
 
   get '/spaces' do
+    @is_signed_in = session[:id]
+
     repo = SpaceRepository.new
     @spaces = repo.all
     return erb(:spaces)

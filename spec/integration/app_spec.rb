@@ -173,6 +173,7 @@ context "GET /requests" do
       expect(response.status).to eq(302)
       expect(response.body).to eq('')
     end
+    
     it 'deletes a request if booking is denied' do 
       response = post('/requested/2',confirmation: false)
       repo = RequestRepository.new

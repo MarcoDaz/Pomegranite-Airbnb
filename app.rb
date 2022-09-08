@@ -42,7 +42,7 @@ class Application < Sinatra::Base
     user = repo.find_by_email(email)
     redirect('/sign_in') unless repo.sign_in(email, password)
     session[:id] = user.id
-    redirect('/requests')
+    redirect('/spaces')
   end
 
   get "/sign_out" do

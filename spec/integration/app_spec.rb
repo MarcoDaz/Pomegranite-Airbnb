@@ -92,6 +92,7 @@ describe Application do
   end
   context "GET /requests" do
     it 'returns a list of requests I have made and received' do
+    post('/sign_in',email: '123@gmail.com', password: '123456')
     response = get('/requests')
 
     expect(response.status).to eq(200)

@@ -1,7 +1,7 @@
 <h1>All Requests </h1>
 <div>
 <h2> Requests I have made: </h2> 
-<% @requests.each do |request| %>
+<% @requests_made.each do |request| %>
   <%= request.space_id %> <br> <br>
   <%= request.date %> 
     <% if request.confirmed == false %>
@@ -15,8 +15,8 @@
 <div>
 <br>
 <h2> Requests I have received: </h2>
-<% @requests.each do |request| %>
-  <%= request.space_id%> <br> <br>
+<% @requests_received.each do |request| %>
+  <%= request.space_id %> <br> <br>
   <%= request.date %>
     <% if request.confirmed == false %>
   <p> Not confirmed </p>

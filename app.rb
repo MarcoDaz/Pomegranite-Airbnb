@@ -44,14 +44,22 @@ class Application < Sinatra::Base
     repo = UserRepository.new
     user = repo.find_by_email(email)
     redirect('/sign_in') unless repo.sign_in(email, password)
-    session[:id] = user.id
-    redirect('/spaces')
+    @session = user.id
+    redirect('/requests')
   end
 
   # get "/sign_out" do
   #   session.clear
   #   redirect("/")
   # end 
+  get '/requests' do
+    repo = RequestRepository.new
+    return @session
+    
+    @requests_received = repo.filter_by_owner_user_id(user_id)
+    @requests_made = repo.filter_by_requester_user_id(user_id)
 
+    #return erb(:all_requests)
+  end
   
 end

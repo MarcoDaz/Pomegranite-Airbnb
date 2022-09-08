@@ -103,9 +103,9 @@ class Application < Sinatra::Base
 
     
     #@requested = repo.filter_by_owner_user_id(session[:id])
-    @request = repo.find(params[:id])
-    @requester_user = userrepo.find(@request.requester_user_id)
-    @space = spacerepo.find(@request.space_id)
+    @request_obj = repo.find(params[:id])
+    @requester_user = userrepo.find(@request_obj.requester_user_id)
+    @space = spacerepo.find(@request_obj.space_id)
     
     #if @request.owner_user_id != session[:id] 
       #redirect('/requests')

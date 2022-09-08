@@ -1,24 +1,18 @@
 <html>
-<head></head>
-<body>
-<h1> Requests For Your Space: <%= @space.name %> </h1> 
-  <p> Date Requested: <%= @request.date %> </p>
+  <head></head>
+  <body>
+    <h1> Requests For Your Space: <%= @space.name %> </h1> 
+    <p> Date Requested: <%= @request_obj.date %> </p>
 
-  <% if @request.confirmed == false %>
-  <p> Not confirmed </p>
-     <% else %>
-  <p> Booking confirmed </p>
-   <% end %>
+    <% if @request_obj.confirmed == false %>
+      <p> Not confirmed </p>
 
-<form action="/requested/:id" method="POST">
-  <input type="submit" value="Confirm this request">
-</form>
- 
-<form action="<%= '/requested/' + @request.id.to_s%>" method="POST">
-  <a href="<%= '/spaces/' + @space.id.to_s%>">
-  <input type="submit" value="Deny this request">
-</form>
+      <form action="<%= '/requested/' + @request_obj.id.to_s%>" method="POST">
+        
+      </form>
 
-
-</body>
+    <% else %>
+      <p> Booking confirmed </p>
+    <% end %>
+  </body>
 </html>

@@ -76,6 +76,7 @@ describe Application do
 
   context 'GET /create_space' do
     it 'redirects to sign_in if not logged in' do
+      post('/sign_out')
       response = get('/create_space')
 
       expect(response.status).to eq 302
@@ -92,44 +93,10 @@ describe Application do
       expect(body).to include '<h1>List a Space</h1>'
       expect(body).to include '<form action="/create_space" method="POST">'
       expect(body).to include '<input type="text" name="name" id="name" required>'
-      expect(body).to include '<input type="text" name="description" id="description" required>'
-      expect(body).to include '<input type="number" name="price" id="price" required>'
-      expect(body).to include '<input type="date" name="available_from" id="available_from" required>'
-      expect(body).to include '<input type="date" name="available_to" id="available_to" required>'
-    end
-  end
-
-  context 'POST /create_space' do
-    it 'redirects to sign_in if not signed in' do
-      response = post('create_space')
-      
-      # redirect to /sign_in
-      expect(response.status).to eq 302
-    end
-
-    it 'creates a space if signed in and redirects to /spaces' do
-      post('/sign_in', email: '123@gmail.com', password: '123456')
-
-      response = post(
-        '/create_space',
-        name: 'Dreamland Hotel',
-        description: '123 Imaginary St.',
-        price: 999,
-        available_from: '2023-01-01',
-        available_to: '2023-12-01'
-      )
-
-      # redirect to /spaces
-      expect(response.status).to eq 302
-
-      repo = SpaceRepository.new
-      latest_space = repo.all.last
-
-      expect(latest_space.name).to eq 'Dreamland Hotel'
-      expect(latest_space.description).to eq '123 Imaginary St.'
-      expect(latest_space.price).to eq 999
-      expect(latest_space.available_from).to eq '2023-01-01'
-      expect(latest_space.available_to).to eq '2023-12-01'
+      expect(body).to include '<input type="text" description="description" id="description" required>'
+      expect(body).to include '<input type="number" price="price" id="price" required>'
+      expect(body).to include '<input type="date" available_from="available_from" id="available_from" required>'
+      expect(body).to include '<input type="date" available_to="available_to" id="available_to" required>'
     end
   end
 
@@ -140,6 +107,17 @@ describe Application do
       expect(response.status).to eq(200)
 
       expect(response.body).to include '<h1>Book a space</h1>'
+    end
+  end
+
+  context 'GET single /spaces/:id' do
+    it 'returns spaces/1' do
+      response = get('/spaces/1')
+      repo = SpaceRepository.new
+      expect(response.status).to eq(200)
+
+      expect(response.body).to include '<h1>308 Negra Arroyo Lane, Albuquerque</h1>'
+      expect(response.body).to include '<h2>Quaint house with pool out back</h2>'
     end
   end
 end 

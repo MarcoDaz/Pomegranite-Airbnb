@@ -1,0 +1,15 @@
+<html>
+<head>
+</head>
+<body>
+  <h1><%= @space.name %></h1>
+  
+  <h2><%= @space.description %></h2>
+
+  <form action="/space/:id" method="POST">
+    <p>Pick a night</p><input type="date" name="booked_night">
+    <input type="button" value="Request to book">
+  </form>
+
+</body>
+</html>

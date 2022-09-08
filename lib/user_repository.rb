@@ -1,6 +1,15 @@
 require_relative 'user'
 
 class UserRepository
+  def check_for_user(id)
+    return false if id == nil
+    
+    sql = 'SELECT * FROM users WHERE id = $1'
+    result = DatabaseConnection.exec_params(sql, [id]).to_a[0]
+    
+    return result ? true : false
+  end
+
   def sign_in(email, password)
     user = find_by_email(email)
 
@@ -9,8 +18,7 @@ class UserRepository
 
   def find_by_email(email)
     sql = 'SELECT * FROM users WHERE email = $1;'
-    sql_params = [email]
-    result = DatabaseConnection.exec_params(sql, sql_params).to_a
+    result = DatabaseConnection.exec_params(sql, [email]).to_a
     
     return false if result.length == 0
 

@@ -57,6 +57,11 @@ class Application < Sinatra::Base
   end
 
   get '/create_space' do
-    return erb(:create_space)
+    repo = UserRepository.new
+    if repo.check_for_user(session[:id])
+      return erb(:create_space)
+    else
+      redirect('/sign_in')
+    end
   end
 end

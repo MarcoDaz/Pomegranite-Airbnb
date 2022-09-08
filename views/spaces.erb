@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>All spaces</title>
+  </head>
+  <body>
+    <h1>Book a space</h1>
+    <a href="/create_space"><button>List a space</button></a>
+
+    <form action="submit">
+        <p>Available from: (YYYY-MM-DD)</p><input type="date" name="available_from_date">
+        <p>Available to: (YYYY-MM-DD)</p><input type="date" name="available_to_date">
+        <input type="button" value="List spaces">
+    </form>
+    <% @spaces.each do |space| %>
+      
+      <a href="<%= '/spaces/' + space.id.to_s%>">
+        <h3><%= space.name %></h3>
+        <p><%= space.description %></p>
+      </a><br />
+      
+    <% end %>
+
+  </body>
+</html>

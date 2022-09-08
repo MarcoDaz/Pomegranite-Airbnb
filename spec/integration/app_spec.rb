@@ -90,4 +90,14 @@ describe Application do
       expect(body).to include '<input type="date" available_to="available_to" id="available_to" required>'
     end
   end
+
+  context 'GET /spaces' do
+    it 'returns the spaces form' do
+      response = get('/spaces')
+      repo = SpaceRepository.new
+      expect(response.status).to eq(200)
+
+      expect(response.body).to include '<h1>Book a space</h1>'
+    end
+  end
 end 

@@ -73,6 +73,11 @@ class Application < Sinatra::Base
     
     request = Request.new
     request.space_id = space.id
+    request.owner_user_id = space.owner_user_id
+    request.requester_user_id = session[:id]
+    #request.date = 
+    request.confirmed = false
+    user
     
     redirect('/requests')
   end

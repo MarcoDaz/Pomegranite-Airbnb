@@ -6,7 +6,7 @@
   
   <h2><%= @space.description %></h2>
 
-  <form action="<%= '/space/' + @space.id.to_s %>" method="POST">
+  <form action="<%= '/spaces/' + @space.id.to_s %>" method="POST">
     <p>Pick a night</p>
     <input type="date"
            name="date"

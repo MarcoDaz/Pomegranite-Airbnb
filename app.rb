@@ -59,4 +59,14 @@ class Application < Sinatra::Base
   get '/create_space' do
     return erb(:create_space)
   end
+
+  get '/requests' do 
+    repo = RequestRepository.new
+    spacerepo = SpaceRepository.new
+    @spaces = spacerepo.all
+    @requested = repo.filter_by_owner_user_id(session[:id])
+    @requests  = repo.filter_by_requester_user_id(session[:id])
+
+    return erb(:all_requests)
+  end
 end

@@ -54,9 +54,9 @@ describe Application do
     it " login form" do
       response = get('/sign_in')
       expect(response.status).to eq(200)
-      expect(response.body).to include('method="POST"')
-      expect(response.body).to include('action="/sign_in"')
-      expect(response.body).to include('name="email"')
+      expect(response.body).to include("method='post'")
+      expect(response.body).to include("action='/sign_in'")
+      expect(response.body).to include("name='email'")
     end
   end
 
@@ -100,6 +100,17 @@ describe Application do
     end
   end
 
+  context "GET /requests" do
+    it 'returns a list of requests I have made and received' do
+      post('/sign_in',email: '123@gmail.com', password: '123456')
+      response = get('/requests')
+
+      expect(response.status).to eq(200)
+      expect(response.body).to include("Requests I have made:")
+      expect(response.body).to include("Requests I have received:")
+    end
+  end
+
   context 'GET /spaces' do
     it 'returns the spaces form' do
       response = get('/spaces')
@@ -113,6 +124,41 @@ describe Application do
     it 'returns spaces/1' do
       response = get('/spaces/1')
       expect(response.status).to eq(200)
+    end
+  end
+
+  context "GET /requested/:id" do
+    it 'returns a detailed page of the request you received' do
+    response = get('/requested/2')
+    
+      expect(response.status).to eq(200)
+      expect(response.body).to include('Confirm Booking')
+      expect(response.body).to include('Deny Booking')
+      expect(response.body).to include('Date Requested')
+      expect(response.body).to include('Requests For Your Space: 671 Lincoln Avenue in Winnetka')
+
+    end
+  end
+
+  context "POST /requested/:id" do
+    it 'returns a detailed page of the request you received' do
+    response = post('/requested/2',confirmation: true)
+      expect(response.status).to eq(302)
+      expect(response.body).to eq('')
+    end
+    
+    it 'deletes a request if booking is denied' do 
+      response = post('/requested/2',confirmation: false)
+      repo = RequestRepository.new
+      expect(response.status).to eq(302)
+      expect(response.body).to eq('')
+      expect(repo.all.length).to eq 1
+    end
+  end
+
+  context 'GET /sign_out' do
+    it 'changes the header for spaces.erb' do
+      post('/sign_in', email: '123@gmail.com', password: '123456')
 
       expect(response.body).to include '<h1>308 Negra Arroyo Lane, Albuquerque</h1>'
       expect(response.body).to include '<h2>Quaint house with pool out back</h2>'

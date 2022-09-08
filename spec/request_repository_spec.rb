@@ -63,8 +63,7 @@ RSpec.describe RequestRepository do
   it 'confirms a request' do
     repo = RequestRepository.new
 
-    request1 = repo.find(1)
-    repo.confirm(request1)
+    repo.confirm(1)
 
     updated_request1 = repo.find(1)
 

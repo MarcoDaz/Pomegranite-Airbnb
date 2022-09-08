@@ -45,10 +45,10 @@ class Application < Sinatra::Base
     redirect('/requests')
   end
 
-  # get "/sign_out" do
-  #   session.clear
-  #   redirect("/")
-  # end 
+  get "/sign_out" do
+    session.clear
+    redirect("/")
+  end 
 
   get '/spaces' do
     repo = SpaceRepository.new
@@ -57,7 +57,33 @@ class Application < Sinatra::Base
   end
 
   get '/create_space' do
-    return erb(:create_space)
+    repo = UserRepository.new
+    
+    if repo.check_for_user(session[:id])
+      return erb(:create_space)
+    else
+      redirect('/sign_in')
+    end
+  end
+
+  post '/create_space' do
+    repo = UserRepository.new
+  
+    if repo.check_for_user(session[:id])
+      space = Spaces.new
+      space.name = params['name']
+      space.description = params['description']
+      space.price = params['price']
+      space.available_from = params['available_from']
+      space.available_to = params['available_to']
+      space.user_id = session[:id]
+
+      SpaceRepository.new.create(space)
+
+      redirect('/spaces')
+    else
+      redirect('/sign_in')
+    end
   end
 
   get '/requests' do 

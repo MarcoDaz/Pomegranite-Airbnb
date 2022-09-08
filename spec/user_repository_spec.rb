@@ -11,6 +11,20 @@ describe UserRepository do
       reset_users_table
   end
 
+  it 'returns true if user exists' do
+    repo = UserRepository.new
+    result = repo.check_for_user(1)
+
+    expect(result).to eq true
+  end
+
+  it 'returns false if no such user' do
+    repo = UserRepository.new
+    result = repo.check_for_user(5)
+
+    expect(result).to eq false
+  end
+
   it "sign a user in" do
     repo = UserRepository.new
     result = repo.sign_in('123@gmail.com','123456')

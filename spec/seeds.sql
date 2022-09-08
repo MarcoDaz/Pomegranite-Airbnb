@@ -36,7 +36,7 @@ CREATE TABLE "public"."spaces" (
     PRIMARY KEY ("id")
 );
 
--- date inputs: '01/02/03' for January 2, 2003 in MDY mode
+-- date inputs: '2022-01-02' for January 2, 2003
 INSERT INTO "public"."spaces" (
   "name",
   "description",

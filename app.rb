@@ -45,10 +45,10 @@ class Application < Sinatra::Base
     redirect('/requests')
   end
 
-  # get "/sign_out" do
-  #   session.clear
-  #   redirect("/")
-  # end 
+  get "/sign_out" do
+    session.clear
+    redirect("/")
+  end 
 
   get '/spaces' do
     repo = SpaceRepository.new

@@ -103,17 +103,15 @@ describe Application do
   context 'GET /spaces' do
     it 'returns the spaces form' do
       response = get('/spaces')
-      repo = SpaceRepository.new
       expect(response.status).to eq(200)
 
       expect(response.body).to include '<h1>Book a space</h1>'
     end
   end
 
-  context 'GET single /spaces/:id' do
+  context 'GET /spaces/:id' do
     it 'returns spaces/1' do
       response = get('/spaces/1')
-      repo = SpaceRepository.new
       expect(response.status).to eq(200)
 
       expect(response.body).to include '<h1>308 Negra Arroyo Lane, Albuquerque</h1>'

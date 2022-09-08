@@ -6,9 +6,14 @@
   
   <h2><%= @space.description %></h2>
 
-  <form action="/space/:id" method="POST">
-    <p>Pick a night</p><input type="date" name="booked_night">
-    <input type="button" value="Request to book">
+  <form action="<%= '/space/' + @space.id.to_s %>" method="POST">
+    <p>Pick a night</p>
+    <input type="date"
+           name="date"
+           min=<%= @space.available_from %>
+           max=<%= @space.available_to %>
+    >
+    <input type="submit" value="Request to book">
   </form>
 
 </body>

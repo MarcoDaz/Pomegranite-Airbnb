@@ -65,10 +65,14 @@ class Application < Sinatra::Base
   end
 
   post '/spaces/:id' do
+    redirect('/sign_in') unless session[:id]
+
     repo = SpaceRepository.new
-    @space = repo.find(params[:id])
-    redirect('/sign_in') unless repo.sign_in(email, password)
-    session[:id] = user.id
+    space = repo.find(params[:id])
+    
+    request = Request.new
+    request.space_id = space.id
+    
     redirect('/requests')
   end
 

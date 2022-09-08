@@ -93,13 +93,10 @@ class RequestRepository
   
   # Updates request record's confirmed attribute to true
   # Returns a Request object
-  def confirm(request)
-    sql = "UPDATE requests
-            SET confirmed = true
-            WHERE id = $1;
-    "
+  def confirm(id)
+    sql = "UPDATE requests SET confirmed = true WHERE id = $1;"
 
-    DatabaseConnection.exec_params(sql, [request.id])
+    DatabaseConnection.exec_params(sql, [id])
 
     return nil
   end
@@ -113,6 +110,7 @@ class RequestRepository
   
   # Filters requests by the owner_user_id
   # Given a owner_user_id
+  # All the requests they have received
   def filter_by_owner_user_id(owner_user_id)
     sql = "
       SELECT

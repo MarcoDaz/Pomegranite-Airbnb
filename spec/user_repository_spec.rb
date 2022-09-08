@@ -11,6 +11,16 @@ describe UserRepository do
       reset_users_table
   end
 
+    it 'Gets a single user' do
+      repo = UserRepository.new
+      
+      user = repo.find(1)
+      
+      expect(user.id).to eq(1)
+      expect(user.email).to eq('123@gmail.com')
+    end
+      
+
   it 'returns true if user exists' do
     repo = UserRepository.new
     result = repo.check_for_user(1)

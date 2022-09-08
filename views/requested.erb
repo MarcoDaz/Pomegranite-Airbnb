@@ -1,0 +1,26 @@
+<html>
+  <head></head>
+  <body>
+    <h1> Requests For Your Space: <%= @space.name %> </h1> 
+    <p> Date Requested: <%= @request_obj.date %> </p>
+
+    <% if @request_obj.confirmed == false %>
+      <p> Not confirmed </p>
+
+      <form action="<%= '/requested/' + @request_obj.id.to_s%>" method="POST">
+
+        <button name="confirmation" type="submit"
+          value=true>Confirm Booking</button> <br> <br>
+
+        <button name="confirmation" type="submit"
+          value=false>Deny Booking</button> <br> <br>
+       
+      </form>
+
+    <% else %>
+      <p> Booking confirmed </p>
+    <% end %>
+
+
+  </body>
+</html>

@@ -12,6 +12,7 @@ class Application < Sinatra::Base
   # without having to restart the server.
   configure :development do
     register Sinatra::Reloader
+    enable :sessions
   end
 
   get '/' do
@@ -29,10 +30,6 @@ class Application < Sinatra::Base
     
     return erb(:sign_up_success)
   end
-  
-  get '/create_space' do
-    return erb(:create_space)
-  end
 
   get '/sign_in' do
     return erb(:sign_in)
@@ -44,7 +41,7 @@ class Application < Sinatra::Base
     repo = UserRepository.new
     user = repo.find_by_email(email)
     redirect('/sign_in') unless repo.sign_in(email, password)
-    @session = user.id
+    session[:id] = user.id
     redirect('/requests')
   end
 
@@ -52,14 +49,14 @@ class Application < Sinatra::Base
   #   session.clear
   #   redirect("/")
   # end 
-  get '/requests' do
-    repo = RequestRepository.new
-    return @session
-    
-    @requests_received = repo.filter_by_owner_user_id(user_id)
-    @requests_made = repo.filter_by_requester_user_id(user_id)
 
-    #return erb(:all_requests)
+  get '/spaces' do
+    repo = SpaceRepository.new
+    @spaces = repo.all
+    return erb(:spaces)
   end
-  
+
+  get '/create_space' do
+    return erb(:create_space)
+  end
 end

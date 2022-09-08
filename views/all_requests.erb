@@ -1,8 +1,8 @@
 <h1>All Requests </h1>
 <div>
 <h2> Requests I have made: </h2> 
-<% @requests.each do |request| %>
-  <%= @spaces[request.space_id].name %> <br> <br>
+<% @request_sent.each do |request| %>
+  <%= @spaces[request.space_id - 1].name %> <br> <br>
   <%= request.date %> 
     <% if request.confirmed == false %>
   <p> Not confirmed </p>
@@ -15,14 +15,16 @@
 <div>
 <br>
 <h2> Requests I have received: </h2>
-<% @requested.each do |request| %>
-  <%= @spaces[request.space_id].name %> <br> <br>
+<% @request_received.each do |request| %>
+<a href="<%='/requested/' + request.id.to_s %>">
+  <%= @spaces[request.space_id - 1].name %> <br> <br>
   <%= request.date %>
     <% if request.confirmed == false %>
   <p> Not confirmed </p>
     <% else %>
   <p> Booking confirmed </p>
   <% end %>
+  </a>
 <% end %>
 </div>
 </body>

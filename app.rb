@@ -42,6 +42,7 @@ class Application < Sinatra::Base
     user = repo.find_by_email(email)
     redirect('/sign_in') unless repo.sign_in(email, password)
     session[:id] = user.id
+    session[:email] = params[:email]
     redirect('/spaces')
   end
 
@@ -90,8 +91,8 @@ class Application < Sinatra::Base
     repo = RequestRepository.new
     spacerepo = SpaceRepository.new
     @spaces = spacerepo.all
-    @requested = repo.filter_by_owner_user_id(session[:id])
-    @requests  = repo.filter_by_requester_user_id(session[:id])
+    @request_received = repo.filter_by_owner_user_id(session[:id])
+    @request_sent = repo.filter_by_requester_user_id(session[:id])
 
     return erb(:all_requests)
   end
@@ -107,10 +108,21 @@ class Application < Sinatra::Base
     @requester_user = userrepo.find(@request_obj.requester_user_id)
     @space = spacerepo.find(@request_obj.space_id)
     
-    #if @request.owner_user_id != session[:id] 
+    #if @request_obj.owner_user_id != session[:id] 
       #redirect('/requests')
     #end 
 
     return erb(:requested)
+  end
+
+  post '/requested/:id' do
+    repo = RequestRepository.new
+    request_id = params[:id].to_i
+    if (params['confirmation'] == 'true')
+      repo.confirm(request_id)
+    else
+      repo.delete(request_id)
+   end
+    redirect('/requests')
   end
 end

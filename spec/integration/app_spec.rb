@@ -75,7 +75,16 @@ describe Application do
 
 
   context 'GET /create_space' do
+    it 'redirects to sign_in if not logged in' do
+      post('/sign_out')
+      response = get('/create_space')
+
+      expect(response.status).to eq 302
+    end
+
     it 'returns an html form for listing a new space' do
+      post('/sign_in', email: '123@gmail.com', password: '123456')
+
       response = get('/create_space')
       body = response.body
 

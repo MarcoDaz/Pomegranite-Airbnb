@@ -2,6 +2,15 @@
   <head>
     <title>All spaces</title>
   </head>
+  <header>
+    <a href="/requests">Requests</a>
+
+    <% if @is_signed_in == nil %>
+      <a href="/sign_in">Login</a>
+    <% else %>
+      <a href="/sign_out">Sign Out</a>
+    <% end %>
+  </header>
   <body>
     <h1>Book a space</h1>
     <a href="/create_space"><button>List a space</button></a>

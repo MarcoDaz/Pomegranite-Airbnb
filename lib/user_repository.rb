@@ -12,7 +12,7 @@ class UserRepository
 
   def sign_in(email, password)
     user = find_by_email(email)
-
+    return false if user == false
     return user.password == password
   end
 

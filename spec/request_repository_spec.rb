@@ -91,6 +91,7 @@ RSpec.describe RequestRepository do
     expect(requests_of_owner2[0].requester_user_id).to eq 1
     expect(requests_of_owner2[0].date).to eq '2022-09-24'
     expect(requests_of_owner2[0].confirmed).to eq false
+    expect(requests_of_owner2[0].space_name).to eq '308 Negra Arroyo Lane, Albuquerque'
   end
 
   it 'filter a request by requester user id' do
@@ -103,5 +104,6 @@ RSpec.describe RequestRepository do
     expect(requests_of_requester1[0].requester_user_id).to eq 1
     expect(requests_of_requester1[0].date).to eq '2022-09-24'
     expect(requests_of_requester1[0].confirmed).to eq false
+    expect(requests_of_requester1[0].space_name).to eq '308 Negra Arroyo Lane, Albuquerque'
   end
 end

@@ -4,5 +4,6 @@ class Request
                   :owner_user_id,
                   :requester_user_id,
                   :date,
-                  :confirmed
+                  :confirmed,
+                  :space_name
 end

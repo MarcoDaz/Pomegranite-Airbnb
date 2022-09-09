@@ -14,7 +14,7 @@
 <div>
 <h2> Requests I have made: </h2> 
 <% @request_sent.each do |request| %>
-  <%= @spaces[request.space_id - 1].name %> <br> <br>
+  <%= request.space_name %> <br> <br>
   <%= request.date %> 
     <% if request.confirmed == false %>
   <p> <b> Not confirmed </b> </p>
@@ -29,7 +29,7 @@
 <h2> Requests I have received: </h2>
 <% @request_received.each do |request| %>
 <a href="<%='/requested/' + request.id.to_s %>">
-  <%= @spaces[request.space_id - 1].name %> <br> <br>
+  <%= request.space_name %> <br> <br>
   <%= request.date %>
     <% if request.confirmed == false %>
   <p> <b> Not confirmed <b> </p>

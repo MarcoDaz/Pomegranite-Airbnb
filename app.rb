@@ -117,7 +117,6 @@ class Application < Sinatra::Base
     @is_signed_in = session[:id]
     repo = RequestRepository.new
     spacerepo = SpaceRepository.new
-    @spaces = spacerepo.all
     @request_received = repo.filter_by_owner_user_id(session[:id])
     @request_sent = repo.filter_by_requester_user_id(session[:id])
 

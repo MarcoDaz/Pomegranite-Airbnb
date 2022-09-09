@@ -5,7 +5,7 @@ require_relative 'lib/space_repository'
 require_relative 'lib/request_repository'
 require_relative 'lib/database_connection'
 
-DatabaseConnection.connect('pomegranite-airbnb::DATABASE')
+DatabaseConnection.connect
 
 class Application < Sinatra::Base
   # This allows the app code to refresh

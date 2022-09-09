@@ -232,4 +232,12 @@ describe Application do
       expect(response2.body).to include 'Login'
     end
   end
+    
+    #context 'GET /404' do do
+    #it 'Returns an error page'
+    #response = get('/ewqkjnrqopi')
+    #expect(response.status).to eq 500
+
+   #expect(response.body).to include("Sinartra doesn't know this ditty")
+  #end
 end 

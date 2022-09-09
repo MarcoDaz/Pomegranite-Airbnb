@@ -1,43 +1,45 @@
 <html>
-<head></head>
+<head>
+  <title>Requests</title>
+</head>
 <header>
- <a href="/spaces">All Spaces</a>
+  <a href="/spaces">All Spaces</a>
 
-    <% if @is_signed_in == nil %>
-      <a href="/sign_in">Login</a>
-    <% else %>
-      <a href="/sign_out">Sign Out</a>
-    <% end %>
+  <% if @is_signed_in == nil %>
+    <a href="/sign_in">Login</a>
+  <% else %>
+    <a href="/sign_out">Sign Out</a>
+  <% end %>
 </header>
 <body>
-<h1>All Requests </h1>
-<div>
-<h2> Requests I have made: </h2> 
-<% @request_sent.each do |request| %>
-  <%= request.space_name %> <br> <br>
-  <%= request.date %> 
+  <h1>All Requests </h1>
+  <div>
+  <h2> Requests I have made: </h2> 
+  <% @request_sent.each do |request| %>
+    <%= request.space_name %> <br> <br>
+    <%= request.date %> 
     <% if request.confirmed == false %>
-  <p> <b> Not confirmed </b> </p>
+      <p> <b> Not confirmed </b> </p>
     <% else %>
-  <p> <b> Booking confirmed </b> </p>
+      <p> <b> Booking confirmed </b> </p>
+    <% end %>
   <% end %>
-  <% end %>
-</div>
+  </div>
 
-<div>
-<br>
-<h2> Requests I have received: </h2>
-<% @request_received.each do |request| %>
-<a href="<%='/requested/' + request.id.to_s %>">
-  <%= request.space_name %> <br> <br>
-  <%= request.date %>
-    <% if request.confirmed == false %>
-  <p> <b> Not confirmed <b> </p>
-    <% else %>
-  <p> <b> Booking confirmed <b> </p>
+  <div>
+  <br>
+  <h2> Requests I have received: </h2>
+  <% @request_received.each do |request| %>
+    <a href="<%='/requested/' + request.id.to_s %>">
+      <%= request.space_name %> <br> <br>
+      <%= request.date %>
+      <% if request.confirmed == false %>
+        <p> <b> Not confirmed <b> </p>
+      <% else %>
+        <p> <b> Booking confirmed <b> </p>
+      <% end %>
+    </a>
   <% end %>
-  </a>
-<% end %>
 </div>
 </body>
 </html>

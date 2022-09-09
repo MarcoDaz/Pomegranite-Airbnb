@@ -1,10 +1,10 @@
 <html>
   <head></head>
   <header>
-  <a href="/spaces">All Spaces</a>
-  <a href="/requests">All Requests</a>
+    <a href="/spaces">All Spaces</a>
+    <a href="/requests">All Requests</a>
 
-  <% if @is_signed_in == nil %>
+    <% if @is_signed_in == nil %>
       <a href="/sign_in">Login</a>
     <% else %>
       <a href="/sign_out">Sign Out</a>

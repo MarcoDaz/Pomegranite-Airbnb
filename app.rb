@@ -60,6 +60,8 @@ class Application < Sinatra::Base
   end
 
   get '/spaces/:id' do
+    @is_signed_in = session[:id]
+
     repo = SpaceRepository.new
     @space = repo.find(params[:id])
     return erb(:space)

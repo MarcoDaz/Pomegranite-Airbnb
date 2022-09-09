@@ -1,6 +1,17 @@
 <html>
 <head>
+  <title><%= @space.name %></title>
 </head>
+<header>
+  <a href="/spaces">All Spaces</a>
+  <a href="/requests">Requests</a>
+
+  <% if @is_signed_in == nil %>
+    <a href="/sign_in">Login</a>
+  <% else %>
+    <a href="/sign_out">Sign Out</a>
+  <% end %>
+</header>
 <body>
   <h1><%= @space.name %></h1>
   

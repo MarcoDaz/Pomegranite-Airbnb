@@ -18,13 +18,13 @@ class DatabaseConnection
     return
   end
 
-  if ENV['ENV'] == 'test'
-    database_name = 'makersbnb_test'
-  else
-    database_name = 'makersbnb_test'
-  end
-  @connection = PG.connect({ host: '127.0.0.1', dbname: database_name })
-end
+#   if ENV['ENV'] == 'test'
+#     database_name = 'makersbnb_test'
+#   else
+#     database_name = 'makersbnb_test'
+#   end
+#   @connection = PG.connect({ host: '127.0.0.1', dbname: database_name })
+ end
   # This method executes an SQL query 
   # on the database, providing some optional parameters
   # (you will learn a bit later about when to provide these parameters).

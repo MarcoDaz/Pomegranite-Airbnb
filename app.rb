@@ -53,7 +53,7 @@ class Application < Sinatra::Base
 
   get '/spaces' do
     @is_signed_in = session[:id]
-
+    
     repo = SpaceRepository.new
     @spaces = repo.all
     return erb(:spaces)

@@ -114,14 +114,17 @@ class RequestRepository
   def filter_by_owner_user_id(owner_user_id)
     sql = "
       SELECT
-        id,
+        requests.id,
         space_id,
         owner_user_id,
         requester_user_id,
         date,
-        confirmed
+        confirmed,
+        spaces.name
       FROM requests
-      WHERE owner_user_id = $1;
+      JOIN spaces
+      ON space_id = spaces.id
+      WHERE owner_user_id = $1
     "
 
     result_set = DatabaseConnection.exec_params(sql, [owner_user_id])
@@ -135,7 +138,7 @@ class RequestRepository
       request.requester_user_id = record['requester_user_id'].to_i
       request.date = record['date']
       request.confirmed = to_boo(record['confirmed'])
-
+      request.space_name = record['name']
       requests << request
     end
 
@@ -146,14 +149,17 @@ class RequestRepository
   def filter_by_requester_user_id(requester_user_id)
     sql = "
       SELECT
-        id,
+        requests.id,
         space_id,
         owner_user_id,
         requester_user_id,
         date,
-        confirmed
+        confirmed,
+        spaces.name
       FROM requests
-      WHERE requester_user_id = $1;
+      JOIN spaces
+      ON space_id = spaces.id
+      WHERE requester_user_id = $1
     "
 
     result_set = DatabaseConnection.exec_params(sql, [requester_user_id])
@@ -168,6 +174,7 @@ class RequestRepository
       request.requester_user_id = record['requester_user_id'].to_i
       request.date = record['date']
       request.confirmed = to_boo(record['confirmed'])
+      request.space_name = record['name']
 
       requests << request
     end

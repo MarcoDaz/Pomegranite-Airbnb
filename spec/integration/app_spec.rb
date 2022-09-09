@@ -100,8 +100,6 @@ describe Application do
     end
   end
 
-<<<<<<< HEAD
-=======
   context "GET /requests" do
     it 'returns a list of requests I have made and received' do
       post('/sign_in',email: '123@gmail.com', password: '123456')
@@ -113,7 +111,6 @@ describe Application do
     end
   end
 
->>>>>>> ce6aafa40e02b707db531613da681d15526a6da5
   context 'GET /spaces' do
     it 'returns the spaces form' do
       response = get('/spaces')
@@ -127,8 +124,7 @@ describe Application do
     it 'returns spaces/1' do
       response = get('/spaces/1')
       expect(response.status).to eq(200)
-<<<<<<< HEAD
-=======
+
     end
   end
 
@@ -164,7 +160,6 @@ describe Application do
   context 'GET /sign_out' do
     it 'changes the header for spaces.erb' do
       post('/sign_in', email: '123@gmail.com', password: '123456')
->>>>>>> ce6aafa40e02b707db531613da681d15526a6da5
 
       expect(response.body).to include '<h1>308 Negra Arroyo Lane, Albuquerque</h1>'
       expect(response.body).to include '<h2>Quaint house with pool out back</h2>'

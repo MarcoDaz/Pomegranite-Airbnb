@@ -94,7 +94,7 @@ describe Application do
       expect(body).to include '<form action="/create_space" method="POST">'
       expect(body).to include '<input type="text" name="name" id="name" required>'
       expect(body).to include '<input type="text" name="description" id="description" required>'
-      expect(body).to include '<input type="number" name="price" id="price" required>'
+      expect(body).to include '<input type="number" name="price" id="price" min="1" max="" required>'
       expect(body).to include '<input type="date" name="available_from" id="available_from" required>'
       expect(body).to include '<input type="date" name="available_to" id="available_to" required>'
     end

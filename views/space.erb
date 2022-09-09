@@ -1,0 +1,20 @@
+<html>
+<head>
+</head>
+<body>
+  <h1><%= @space.name %></h1>
+  
+  <h2><%= @space.description %></h2>
+
+  <form action="<%= '/spaces/' + @space.id.to_s %>" method="POST">
+    <p>Pick a night</p>
+    <input type="date"
+           name="date"
+           min=<%= @space.available_from %>
+           max=<%= @space.available_to %>
+    >
+    <input type="submit" value="Request to book">
+  </form>
+
+</body>
+</html>

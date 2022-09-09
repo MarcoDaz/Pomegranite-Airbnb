@@ -76,6 +76,7 @@ describe Application do
 
   context 'GET /create_space' do
     it 'redirects to sign_in if not logged in' do
+      post('/sign_out')
       response = get('/create_space')
 
       expect(response.status).to eq 302
@@ -102,7 +103,7 @@ describe Application do
   context 'POST /create_space' do
     it 'redirects to sign_in if not signed in' do
       response = post('create_space')
-      
+
       # redirect to /sign_in
       expect(response.status).to eq 302
     end
@@ -133,24 +134,57 @@ describe Application do
     end
   end
 
-context "GET /requests" do
+  context "GET /requests" do
     it 'returns a list of requests I have made and received' do
-    post('/sign_in',email: '123@gmail.com', password: '123456')
-    response = get('/requests')
+      post('/sign_in',email: '123@gmail.com', password: '123456')
+      response = get('/requests')
 
-    expect(response.status).to eq(200)
-    expect(response.body).to include("Requests I have made:")
-    expect(response.body).to include("Requests I have received:")
+      expect(response.status).to eq(200)
+      expect(response.body).to include("Requests I have made:")
+      expect(response.body).to include("Requests I have received:")
     end
   end
 
   context 'GET /spaces' do
     it 'returns the spaces form' do
       response = get('/spaces')
-      repo = SpaceRepository.new
+      expect(response.status).to eq(200)
+      expect(response.body).to include '<h1>Book a space</h1>'
+    end
+  end
+
+  context 'GET /spaces/:id' do
+    it 'returns spaces/1' do
+      response = get('/spaces/1')
       expect(response.status).to eq(200)
 
-      expect(response.body).to include '<h1>Book a space</h1>'
+      expect(response.body).to include '<h1>308 Negra Arroyo Lane, Albuquerque</h1>'
+      expect(response.body).to include '<h2>Quaint house with pool out back</h2>'
+    end
+  end
+
+  context 'POST /spaces/:id' do
+    it 'redirects if not signed in ' do
+      response = post('/spaces/1')
+      expect(response.status).to eq 302
+    end
+
+    it 'creates a new request for the matching space' do
+      post('/sign_in', email: '123@gmail.com', password: '123456')
+
+      response = post(
+        '/spaces/1',
+        date: '2022-09-25'
+      )
+
+      latest_request = RequestRepository.new.all.last
+      expect(latest_request.space_id).to eq 1
+      expect(latest_request.owner_user_id).to eq 2
+      expect(latest_request.requester_user_id).to eq 1
+      expect(latest_request.date).to eq '2022-09-25'
+      expect(latest_request.confirmed).to eq false
+
+      expect(response.status).to eq 302
     end
   end
 
@@ -183,7 +217,6 @@ context "GET /requests" do
     end
   end
 
-  
   context 'GET /sign_out' do
     it 'changes the header for spaces.erb' do
       post('/sign_in', email: '123@gmail.com', password: '123456')

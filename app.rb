@@ -13,6 +13,10 @@ class Application < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
     enable :sessions
+    set :session_secret, ENV['SESSION_SECRET'] ||= 'super secret'
+    also_reload 'lib/user_repository'
+    also_reload 'lib/space_repository'
+    also_reload 'lib/request_repository'
   end
 
   get '/' do

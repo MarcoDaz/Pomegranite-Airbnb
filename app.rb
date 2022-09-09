@@ -115,6 +115,7 @@ class Application < Sinatra::Base
 
   get '/requests' do 
     @is_signed_in = session[:id]
+    binding.irb
     repo = RequestRepository.new
     spacerepo = SpaceRepository.new
     @spaces = spacerepo.all
@@ -125,7 +126,6 @@ class Application < Sinatra::Base
   end
 
   get '/requested/:id' do
-    @is_signed_in = session[:id]
     repo = RequestRepository.new
     spacerepo = SpaceRepository.new
     userrepo = UserRepository.new

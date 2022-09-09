@@ -90,6 +90,7 @@ class Application < Sinatra::Base
   end
 
   get '/requests' do 
+    @is_signed_in = session[:id]
     repo = RequestRepository.new
     spacerepo = SpaceRepository.new
     @spaces = spacerepo.all
@@ -100,6 +101,7 @@ class Application < Sinatra::Base
   end
 
   get '/requested/:id' do
+    @is_signed_in = session[:id]
     repo = RequestRepository.new
     spacerepo = SpaceRepository.new
     userrepo = UserRepository.new
@@ -110,7 +112,7 @@ class Application < Sinatra::Base
     @requester_user = userrepo.find(@request_obj.requester_user_id)
     @space = spacerepo.find(@request_obj.space_id)
     
-    #if @request_obj.owner_user_id != session[:id] 
+    #if @request_obj.owner_user_id = @is_signed_in
       #redirect('/requests')
     #end 
 

@@ -10,7 +10,7 @@ class DatabaseConnection
   # the database name given in argument.
  # file: lib/database_connection.rb
 
-def self.connect
+ def self.connect
   # If the environment variable (set by Heroku)
   # is present, use this to open the connection.
   if ENV['DATABASE_URL'] != nil

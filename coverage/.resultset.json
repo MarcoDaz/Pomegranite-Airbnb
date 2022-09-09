@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/marcodaz/MakersCode/Pomegranite-Airbnb/spec/integration/app_spec.rb": {
+      "/Users/connorpant/Projects/Pomegranite-Airbnb/spec/integration/app_spec.rb": {
         "lines": [
           1,
           1,
@@ -237,10 +237,18 @@
           1,
           null,
           null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null
         ]
       },
-      "/Users/marcodaz/MakersCode/Pomegranite-Airbnb/app.rb": {
+      "/Users/connorpant/Projects/Pomegranite-Airbnb/app.rb": {
         "lines": [
           1,
           1,
@@ -358,12 +366,14 @@
           null,
           null,
           1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
           0,
-          0,
-          0,
-          0,
-          null,
-          0,
           null,
           null,
           1,
@@ -371,11 +381,12 @@
           1,
           1,
           null,
+          1,
+          1,
+          1,
+          1,
           null,
           null,
-          1,
-          1,
-          1,
           null,
           null,
           null,
@@ -393,11 +404,14 @@
           1,
           null,
           2,
+          null,
+          null,
+          null,
           null,
           null
         ]
       },
-      "/Users/marcodaz/MakersCode/Pomegranite-Airbnb/lib/user_repository.rb": {
+      "/Users/connorpant/Projects/Pomegranite-Airbnb/lib/user_repository.rb": {
         "lines": [
           1,
           null,
@@ -477,14 +491,14 @@
           null
         ]
       },
-      "/Users/marcodaz/MakersCode/Pomegranite-Airbnb/lib/user.rb": {
+      "/Users/connorpant/Projects/Pomegranite-Airbnb/lib/user.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/Users/marcodaz/MakersCode/Pomegranite-Airbnb/lib/space_repository.rb": {
+      "/Users/connorpant/Projects/Pomegranite-Airbnb/lib/space_repository.rb": {
         "lines": [
           1,
           null,
@@ -559,7 +573,7 @@
           null
         ]
       },
-      "/Users/marcodaz/MakersCode/Pomegranite-Airbnb/lib/space.rb": {
+      "/Users/connorpant/Projects/Pomegranite-Airbnb/lib/space.rb": {
         "lines": [
           1,
           1,
@@ -572,7 +586,7 @@
           null
         ]
       },
-      "/Users/marcodaz/MakersCode/Pomegranite-Airbnb/lib/request_repository.rb": {
+      "/Users/connorpant/Projects/Pomegranite-Airbnb/lib/request_repository.rb": {
         "lines": [
           1,
           null,
@@ -766,7 +780,7 @@
           null
         ]
       },
-      "/Users/marcodaz/MakersCode/Pomegranite-Airbnb/lib/request.rb": {
+      "/Users/connorpant/Projects/Pomegranite-Airbnb/lib/request.rb": {
         "lines": [
           1,
           1,
@@ -779,7 +793,7 @@
           null
         ]
       },
-      "/Users/marcodaz/MakersCode/Pomegranite-Airbnb/spec/request_repository_spec.rb": {
+      "/Users/connorpant/Projects/Pomegranite-Airbnb/spec/request_repository_spec.rb": {
         "lines": [
           1,
           null,
@@ -892,7 +906,7 @@
           null
         ]
       },
-      "/Users/marcodaz/MakersCode/Pomegranite-Airbnb/spec/space_repo_spec.rb": {
+      "/Users/connorpant/Projects/Pomegranite-Airbnb/spec/space_repo_spec.rb": {
         "lines": [
           1,
           1,
@@ -1009,7 +1023,7 @@
           null
         ]
       },
-      "/Users/marcodaz/MakersCode/Pomegranite-Airbnb/spec/user_repository_spec.rb": {
+      "/Users/connorpant/Projects/Pomegranite-Airbnb/spec/user_repository_spec.rb": {
         "lines": [
           1,
           null,
@@ -1093,6 +1107,6 @@
         ]
       }
     },
-    "timestamp": 1662718336
+    "timestamp": 1662719579
   }
 }

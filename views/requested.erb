@@ -1,11 +1,21 @@
 <html>
   <head></head>
+  <header>
+  <a href="/spaces">All Spaces</a>
+  <a href="/requests">All Requests</a>
+
+  <% if @is_signed_in == nil %>
+      <a href="/sign_in">Login</a>
+    <% else %>
+      <a href="/sign_out">Sign Out</a>
+    <% end %>
+  </header>
   <body>
     <h1> Requests For Your Space: <%= @space.name %> </h1> 
-    <p> Date Requested: <%= @request_obj.date %> </p>
+    <p> <b> Date Requested: </b> <%= @request_obj.date %> </p>
 
     <% if @request_obj.confirmed == false %>
-      <p> Not confirmed </p>
+      <p> <b> Not confirmed </b> </p>
 
       <form action="<%= '/requested/' + @request_obj.id.to_s%>" method="POST">
 

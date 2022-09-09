@@ -1,3 +1,15 @@
+<html>
+<head></head>
+<header>
+ <a href="/spaces">All Spaces</a>
+
+    <% if @is_signed_in == nil %>
+      <a href="/sign_in">Login</a>
+    <% else %>
+      <a href="/sign_out">Sign Out</a>
+    <% end %>
+</header>
+<body>
 <h1>All Requests </h1>
 <div>
 <h2> Requests I have made: </h2> 
@@ -5,9 +17,9 @@
   <%= request.space_name %> <br> <br>
   <%= request.date %> 
     <% if request.confirmed == false %>
-  <p> Not confirmed </p>
+  <p> <b> Not confirmed </b> </p>
     <% else %>
-  <p> Booking confirmed </p>
+  <p> <b> Booking confirmed </b> </p>
   <% end %>
   <% end %>
 </div>
@@ -20,9 +32,9 @@
   <%= request.space_name %> <br> <br>
   <%= request.date %>
     <% if request.confirmed == false %>
-  <p> Not confirmed </p>
+  <p> <b> Not confirmed <b> </p>
     <% else %>
-  <p> Booking confirmed </p>
+  <p> <b> Booking confirmed <b> </p>
   <% end %>
   </a>
 <% end %>
